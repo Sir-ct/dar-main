@@ -1,0 +1,34 @@
+<%- include("partials/_header")%>
+<header id="about-header" class="about-header fadeaway">
+    <div class="about-headerwrap">
+        <%- include("partials/_nav.ejs")%>
+        <section class="about hero-section">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <div class="a-w-c" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">Get your free accont</div>
+                <div class="hero-title" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">Register</div>
+                
+            </div>
+        </section>
+       </div>
+</header>
+        
+<section class="login-section">
+    <div class="ls-wrap terms-wrap">
+        <div class="ss-title">
+            Enter all required details:
+        </div>
+
+        <form  id="form" action="/registerdar" method="post">
+            <input type="text" placeholder="Full name" name="fullname" required>
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="email" placeholder="Email Address" name="email" required>
+            <input type="password" placeholder="password" name="password" required>
+            <input type="password" placeholder="confirm password" name="confirmpass" required>
+            <div class="referrer">Upline: </div>
+           <div class="t-c">I agree to terms and conditions <input type="checkbox" checked></div>
+            <button type="submit">SignUp</button>
+        </form>
+    </div>
+</section>
+
+<%- include("partials/_footer")%>

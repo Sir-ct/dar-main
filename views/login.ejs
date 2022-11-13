@@ -1,0 +1,30 @@
+<%- include("partials/_header")%>
+<header id="about-header" class="about-header fadeaway">
+    <div class="about-headerwrap">
+        <%- include("partials/_nav.ejs")%>
+        <section class="about hero-section">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <div class="a-w-c" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">Login accont</div>
+                <div class="hero-title" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">Login</div>
+                
+            </div>
+        </section>
+       </div>
+</header>
+        
+<section class="login-section">
+    <div class="ls-wrap terms-wrap">
+        <div class="ss-title">
+            Login:
+        </div>
+
+        <form  id="form" action="/logindar" method="post">
+            <input type="text" placeholder="username">
+            <input type="password" placeholder="password">
+            <a href="/passwordforgot" class="forgot-password"> Forgot password?</a>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</section>
+
+<%- include("partials/_footer")%>

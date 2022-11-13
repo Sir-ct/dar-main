@@ -1,0 +1,22 @@
+.faq-accordion-wrap{
+    width: 90%;
+    padding-bottom: 5%;
+}
+.accordion-items{
+    margin-bottom: 10px;
+}
+.accordion-question{
+    display: flex;
+    padding: 15px;
+    background-color: white;
+}
+.aq{
+    margin-left: auto;
+}
+.accordion-answers{
+    display: none;
+    padding: 20px 20px 5% 20px;
+}
+.show-faq{
+    display: block;
+}

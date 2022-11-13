@@ -1,0 +1,133 @@
+<footer>
+    <div class="footer-wrap">
+        <div class="footer-left">
+            <div class="footer-logo"> <img src="/images/dormantlogo.svg" alt=""> </div>
+
+            <p>We help you develop and boom your investment portfolio</p>
+
+            <div class="links">
+                <a href="">Home</a>
+                <a href="">Our company</a>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div class="footer-mail-address">
+                <div class="mail">
+                    <h4>Email</h4>
+                    <p>support@dormantaccountrefunds.com</p>
+                </div>
+
+                <div class="address">
+                    <h4>Office Address</h4>
+                    <p> Z2 King Street, Nottingham, NG1 2AS</p>
+                </div>
+            </div>
+
+            <div class="newsletter">
+                <h2>Newsletter</h2>
+                <p>subscribe to our news letter</p>
+                <form action="">
+                    <input type="email" placeholder="yourmail@domain.com">
+                    <input type="submit" value="Subscribe" class="newsletter-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">&copy; 2022 - <span>Dormantaccountrefunds</span>, copyright reserved</div>
+</footer>
+
+<div id="notification-bar" class="notification-bar">
+   
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    //animate on scroll initialization
+    AOS.init()
+
+    $('.owl-carousel').owlCarousel({
+    loop: false,
+    margin:3,
+    nav:false,
+    dots: false,
+    lazyload: true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+
+    //pricing section toggle script
+    let toggle = document.getElementById("toggle");
+    let plansection = document.getElementById("price-section")
+
+    toggle.addEventListener("click", ()=>{
+       plansection.classList.toggle("switchvip")
+    })
+
+   
+
+    //pop up notification element declaration
+    let popup = document.getElementById("notification-bar")
+    //carousel related script
+    let header = document.getElementById("header")
+    let herowriteup = document.getElementsByClassName("hero-content")
+
+    let i = 0
+    
+
+    setInterval(()=>{
+        if(i == herowriteup.length-1){
+            i = 0
+        }
+        herowriteup[i].classList.toggle("hidden")
+        herowriteup[i+1].classList.toggle("hidden")
+       // herowriteup[i-1].classList.toggle("hidden")
+        header.classList.toggle("switchbg")
+        i++
+
+    }, 10000)
+
+    function removepop(){
+      
+        popup.style.display = ""
+    }
+
+    function invested(){
+        
+       popup.innerHTML = ` <ion-icon name="checkmark-circle-outline"></ion-icon> 
+    <p>an investor from egypt deposited &pound;2000</p>`
+        popup.style = "display: flex"
+
+        setTimeout(()=>{
+        removepop()
+
+        return
+      }, 2000)
+    }
+
+     function popnotif(){
+
+    setInterval(() => {
+
+        invested()
+
+    }, 6000);
+   }
+
+    window.addEventListener("load", popnotif)
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

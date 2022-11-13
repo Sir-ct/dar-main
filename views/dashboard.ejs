@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <title>Dormantaccountrefunds - Dashboard</title>
+</head>
+<body>
+    <div class="dash-wrap">
+        <nav class="dash-nav">
+            <div class="dash-nav-welcome">
+                <div class="welcome-title"><%= "username"%></div>
+                <div>welcome</div>
+            </div>
+
+            <div class="dash-nav-items">
+                <div class="nav-item-title">Main</div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="home"></ion-icon></div>
+                    <div class="name">Dashboard</div>
+                </div>
+            </div>
+
+            <div class="dash-nav-items">
+                <div class="nav-item-title">Finances</div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="swap-horizontal"></ion-icon></div>
+                    <div class="name">Transactions</div>
+                    <div class="toggle-icon"><ion-icon name="chevron-down-outline"></ion-icon></div>
+                </div>
+                <div class="nav-sub-items-wrap">
+                    <div class="nav-sub-item">
+                       <a  class="item-name" href="/dashboard?page=deposit">Deposit</a>
+                    </div>
+
+                    <div class="nav-sub-item">
+                        <a class="item-name" href="/dashboard?page=withdraw">Withdraw</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-nav-items">
+                <div class="nav-item-title">Account summary</div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="server"></ion-icon></div>
+                    <div class="name">History</div>
+                    <div class="toggle-icon"><ion-icon name="chevron-down-outline"></ion-icon></div>
+                </div>
+            </div>
+
+            <div class="dash-nav-items">
+                <div class="nav-item-title">Referrals</div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="link"></ion-icon></div>
+                    <div class="name">Referrals</div>
+                </div>
+            </div>
+
+            <div class="dash-nav-items">
+                <div class="nav-item-title">Settings</div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="settings"></ion-icon></div>
+                    <div class="name">Profile</div>
+                </div>
+                <div class="nav-item-tab">
+                    <div class="logo"><ion-icon name="log-out"></ion-icon></div>
+                    <div class="name">Logout</div>
+                </div>
+            </div>
+        </nav>
+
+        <!--start of body-->
+        <div class="dash-body">
+            <div class="dash-body-wrap">
+                <div class="dash-body-header">
+                    <div id="ham" class="dash-hamburger">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="dash-user">
+                        <div class="username">
+                            <%= "username" %>
+                        </div>
+                        <div>
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-body-nav">
+                    <div class="body-nav-info">
+                        <div class="welcome-title">
+                            Dashboard
+                        </div>
+                        <div>
+                            Home <ion-icon name="chevron-forward-outline"></ion-icon> Dashboard
+                        </div>
+                    </div>
+
+                   <a class="deposit" href="/dashboard?page=deposit">
+                        <div class="deposit-cross-logo">
+                            <ion-icon name="add-outline"></ion-icon>
+                        </div>
+                        <div class="deposit-deposit">
+                            Deposit
+                        </div>
+                   </a>
+                </div>
+
+                <%- include("./partials/dashboard/deposit")%>
+
+                <div class="dash-body-footer">
+                    Copyright © 2022 dormantaccountrefunds.com . All rights reserved.
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

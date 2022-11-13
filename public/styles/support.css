@@ -1,0 +1,68 @@
+.customer-support{
+    background-color: rgb(234, 236, 241);
+}
+.support-items-wrap{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+.support-items{
+    width: 32%;
+}
+.support-items .ss-title{
+    color: white;
+    background: rgb(90, 121, 224);
+    border-radius: 5px;
+}
+.talk-to-us-wrap{
+    padding: 5% 0;
+}
+.talk-to-us{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 1px 1px 5px rgb(202, 211, 218);
+}
+.name-mail{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.name-mail input{
+    width: 45%;
+    padding: 10px;
+}
+.talk-to-us button{
+    width: 20%;
+    padding: 20px 0;
+    margin: 20px 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(90, 121, 224);
+}
+
+@media (max-width: 799px){
+    .support-items-wrap{
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        
+    }
+    .support-items{
+        width: 100%;
+    }
+    .name-mail{
+        flex-direction: column;
+    }
+    .name-mail input{
+        width: auto;
+        margin: 10px 0;
+    }
+    .talk-to-us button{
+        width: 100%;
+    }
+}

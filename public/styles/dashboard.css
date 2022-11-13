@@ -1,0 +1,204 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.hidden{
+    display: none;
+}
+.dash-wrap{
+    display: flex;
+    max-height: 100vh;
+    overflow: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.dash-nav{
+    width: auto;
+    padding: 15px;
+    box-shadow: 100px 102px black;
+}
+.dash-nav-welcome{
+    padding: 50px 0 20% 0;
+    border-bottom: 0.001em solid rgb(204, 194, 194);
+}
+.welcome-title{
+    font-weight: 400;
+    font-size: 25px;
+}
+.nav-item-title{
+    font-size: 12px;
+    color: rgb(204, 194, 194);
+}
+.nav-item-tab{
+    width: 200px;
+    display: flex;
+    padding: 15px 0;
+    color: rgb(92, 83, 83);
+}
+.nav-item-tab div{
+    padding: 10px;
+}
+.nav-sub-items-wrap{
+    width: 100%;
+}
+.nav-sub-item{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.nav-sub-item a{
+    text-decoration: none;
+}
+.dash-nav-items{
+    /*border-top: 0.001em solid rgb(204, 194, 194);*/
+    padding: 5px 0;
+}
+.item-name{
+    margin-left: 20%;
+    color: rgb(119, 103, 103);
+}
+.toggle-icon{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/*main dashboard styles*/
+.dash-body{
+    width: 100%;
+    overflow-y: auto;
+    background: rgb(241, 246, 247);
+}
+.dash-body-header{
+    width: 98%;
+    display: flex;
+    padding: 1%;
+    justify-content: right;
+    align-items: center;
+    background: linear-gradient(to left, rgb(9, 155, 0) 0%,  rgb(28, 31, 182) 100%);
+}
+.dash-user{
+    display: flex;
+    color: white;
+}
+.dash-hamburger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+.dash-hamburger div{
+    width: 20px;
+    height: 3px;
+    margin: 1px 0;
+    background-color: white;
+}
+.dash-body-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    background-color: white;
+}
+
+/*deposit inside dash*/
+.deposit{
+    display: flex;
+    width: 10%;
+    height: 30px;
+    text-decoration: none;
+    justify-content: center;
+    background-color: rgb(53, 187, 46);
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 50px;
+    box-shadow: 1px 1px 5px 1px gainsboro;
+}
+.deposit div{
+    padding: 0 5px;
+    color: white;
+}
+.dash-body-widget{
+    padding: 25px 0;
+    margin: 25px 0;
+    background-color: white;
+}
+.dash-body-acct-info{
+    display: flex;
+    justify-content: space-evenly;
+}
+.dash-acct-info-item{
+    width: 20%;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
+}
+.item-value{
+    font-size: 25px;
+    color: brown;
+    margin: 20px 0;
+}
+.item-info{
+    display: flex;
+    align-items: center;
+    letter-spacing: 2;
+    color: rgb(179, 159, 159);
+}
+.dash-body-chart, .dash-crypto-prices{
+    padding: 20px;
+    margin: 5% 15px;
+    background-color: white;
+}
+.dash-body-footer{
+    position: fixed;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+.deposit-form{
+    width: 80%;
+    margin: 5% auto;
+    padding: 3%;
+    background-color: white;
+    box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
+}
+.deposit-div{
+    width: 80%;
+    margin: 5% auto;
+    padding: 3%;
+    background-color: white;
+    box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
+}
+.deposit-select{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+.deposit-submit{
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+    border-radius: 40px;
+    border: white;
+    background-color: rgb(28, 31, 182);
+    box-shadow: 1px 1px 10px 5px gainsboro;
+}
+.deposit-description{
+    padding: 4% 0 2% 0;
+}
+.deposit-details div{
+    margin: 10px 0;
+}
+.dd-name{
+    font-weight: bold;
+}
+.submit-div button, .submit-div a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: blue;
+}

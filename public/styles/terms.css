@@ -1,0 +1,9 @@
+.terms-wrap{
+    width: 50%;
+    margin: auto;
+}
+@media (max-width: 799px){
+    .terms-wrap{
+        width: 90%;
+    }
+}

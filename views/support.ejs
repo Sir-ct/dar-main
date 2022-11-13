@@ -1,0 +1,62 @@
+<%- include("partials/_header")%>
+<header id="about-header" class="about-header fadeaway">
+    <div class="about-headerwrap">
+        <%- include("partials/_nav.ejs")%>
+        <section class="about hero-section">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <div class="a-w-c" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">Excellent support services</div>
+                <div class="hero-title" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">Support is always available to answer all your questions</div>
+                
+            </div>
+        </section>
+       </div>
+</header>
+        
+<section class="customer-support">
+   <div class="csupport-wrap services-wrap s-wrapper">
+    <div class="a-w-c">
+        Our services
+    </div>
+    <h1 class="ss-title">
+       What Services Are We Providing
+    </h1>
+    <div class="support-items-wrap">
+        <div class="support-items">
+            <div class="ss-title">
+                location
+            </div>
+            <p class="ss-desc">
+                Z2 King Street, Nottingham, NG1 2AS
+            </p>
+        </div>
+
+        <div class="support-items">
+            <div class="ss-title">
+                Email
+            </div>
+            <p class="ss-desc">
+                support@dormantaccountrefunds.com
+            </p>
+        </div>
+
+    </div>
+   </div>
+</section>
+
+<section class="support-talk-to-us">
+    <div class="talk-to-us-wrap">
+        
+           <form action="/talk" class="talk-to-us">
+            <h2 class="ss-title">Talk to us</h2>
+            <div class="name-mail">
+                <input type="text" placeholder="Enter name">
+                <input type="email" placeholder="Enter email">
+            </div>
+            <textarea name="support" id="support" cols="30" rows="10" placeholder="Tell us a few words"></textarea>
+            <button type="submit">Send a message</button>
+           </form>
+        
+    </div>
+</section>
+
+<%- include("partials/_footer")%>
