@@ -1,0 +1,94 @@
+<div class="history-div">
+    <div class="history-items">
+        <div class="history-header welcome-title">
+            History:
+        </div>
+        <form action="/searchtransactions" method="post" class="history-search-params">
+            <div class="history-search-divs">
+              <div>
+                <select name="transaction-type">
+                    <option value="all">All Transactions</option>
+                    <option value="deposit">Deposit</option>
+                    <option value="withdrawal">Withdrawal</option>
+                    <option value="earnings">Earnings</option>
+                    <option value="referral">Referral Commissions</option>
+                </select>
+              </div>
+
+                <div>
+                    <select name="transaction-currency" id="">
+                        <option value="all">All ecurrencies</option>
+                        <option value="bitcoin">Bitcoin</option>
+                        <option value="ethreum">Ethereum</option>
+                        <option value="trc20">Trc20</option>
+                    </select>
+                </div>
+            </div>
+            <div class="history-search-divs">
+                <div>
+                    from <span class="date-format">(MM/DD/YYYY)</span>: <select name="from-month">
+                        <%for(let i=0; i < 12; i++){%>
+                            <option value="<%= i + 1%>"><%= i + 1%> </option>
+                        <%}%>
+                    </select>
+                    <select name="from-day" id="">
+                        <%for(let i=0; i < 31; i++){%>
+                            <option value="<%= i + 1%>"><%= i + 1%> </option>
+                        <%}%>
+                    </select>
+                    <select name="from-year" id="">
+                        <%for(let i=2021; i <= new Date().getFullYear(); i++){%>
+                            <option value="<%= i %>"><%= i %> </option>
+                        <%}%>
+                    </select>
+                </div>
+
+                <div>
+                    to <span class="date-format">(MM/DD/YYYY)</span>: <select name="to-month">
+                        <%for(let i=0; i < 12; i++){%>
+                            <%if(i == new Date().getMonth()){%>
+                                <option value="<%= i + 1%>" selected><%= i + 1%> </option>
+                            <%}else{%>
+                                <option value="<%= i + 1%>"><%= i + 1%> </option>
+                            <%}%>
+                        <%}%>
+                    </select>
+                    <select name="to-day" id="">
+                        <%for(let i=0; i < 31; i++){%>
+                            <%if(i + 1 == new Date().getDate()){%>
+                                <option value="<%= i + 1%>" selected><%= i + 1%> </option>
+                            <%}else{%>
+                                <option value="<%= i + 1%>"><%= i + 1%> </option>
+                            <%}%>
+                        <%}%>
+                    </select>
+                    <select name="to-year" id="">
+                        <%for(let i=2021; i <= new Date().getFullYear(); i++){%>
+                            <%if(i == new Date().getFullYear()){%>
+                                <option value="<%= i %>" selected><%= i %> </option>
+                            <%}else{%>
+                                <option value="<%= i %>"><%= i %> </option>
+                            <%}%>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="history-search-divs">
+                <button type="submit" class="submit-history-search">Go</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="history-items">
+        <div class="history-display-head">
+            <div class="hdh-item">Type</div>
+            <div class="hdh-item">Amount</div>
+            <div class="hdh-item">Date</div>
+        </div>
+        <p style="text-align: center; color: grey;">No transactions</p>
+        <div class="history-total">
+            <div>Total:</div>
+            <div>&pound; </div>
+        </div>
+    </div>
+</div>

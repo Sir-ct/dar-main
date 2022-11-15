@@ -18,6 +18,15 @@ const UsersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    bitcoinaddress: {
+        type: String
+    },
+    ethereumaddress: {
+        type: String
+    },
+    trc20address: {
+        type: String
+    },
     account: {
         required: true,
         deposits: {

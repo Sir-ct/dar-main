@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/dashboard.css">
+    <script src="/nav.js"></script>
     <title>Dormantaccountrefunds - Dashboard</title>
 </head>
 <body>
     <div class="dash-wrap">
         <nav class="dash-nav">
+           <div class="dash-nav-wrap">
             <div class="dash-nav-welcome">
                 <div class="welcome-title"><%= "username"%></div>
                 <div>welcome</div>
@@ -17,10 +19,13 @@
 
             <div class="dash-nav-items">
                 <div class="nav-item-title">Main</div>
-                <div class="nav-item-tab">
-                    <div class="logo"><ion-icon name="home"></ion-icon></div>
-                    <div class="name">Dashboard</div>
-                </div>
+                <a href="/dashboard">
+                    <div class="nav-item-tab">
+                        <div class="logo"><ion-icon name="home"></ion-icon></div>
+                        <div class="name">Dashboard</div>
+                    </div>
+                </a>
+                <div class="nav-sub-items-wrap hidden"></div>
             </div>
 
             <div class="dash-nav-items">
@@ -30,7 +35,7 @@
                     <div class="name">Transactions</div>
                     <div class="toggle-icon"><ion-icon name="chevron-down-outline"></ion-icon></div>
                 </div>
-                <div class="nav-sub-items-wrap">
+                <div class="nav-sub-items-wrap hidden">
                     <div class="nav-sub-item">
                        <a  class="item-name" href="/dashboard?page=deposit">Deposit</a>
                     </div>
@@ -48,27 +53,47 @@
                     <div class="name">History</div>
                     <div class="toggle-icon"><ion-icon name="chevron-down-outline"></ion-icon></div>
                 </div>
+                <div class="nav-sub-items-wrap hidden">
+                    <div class="nav-sub-item">
+                       <a  class="item-name" href="/dashboard?page=history">Deposit Histroy</a>
+                    </div>
+
+                    <div class="nav-sub-item">
+                        <a class="item-name" href="/dashboard?page=history">Withdrawal History</a>
+                    </div>
+
+                    <div class="nav-sub-item">
+                        <a class="item-name" href="/dashboard?page=history">Commissions</a>
+                    </div>
+                </div>
             </div>
 
             <div class="dash-nav-items">
                 <div class="nav-item-title">Referrals</div>
-                <div class="nav-item-tab">
-                    <div class="logo"><ion-icon name="link"></ion-icon></div>
-                    <div class="name">Referrals</div>
-                </div>
+                <a href="/dashboard?page=referrals">
+                    <div class="nav-item-tab">
+                        <div class="logo"><ion-icon name="link"></ion-icon></div>
+                        <div class="name">Referrals</div>
+                    </div>
+                </a>
+                <div class="nav-items-wrap hidden"></div>
             </div>
 
             <div class="dash-nav-items">
                 <div class="nav-item-title">Settings</div>
-                <div class="nav-item-tab">
-                    <div class="logo"><ion-icon name="settings"></ion-icon></div>
-                    <div class="name">Profile</div>
-                </div>
+                <a href="/dashboard?page=profile">
+                    <div class="nav-item-tab">
+                        <div class="logo"><ion-icon name="settings"></ion-icon></div>
+                        <div class="name">Profile</div>
+                    </div>
+                </a>
                 <div class="nav-item-tab">
                     <div class="logo"><ion-icon name="log-out"></ion-icon></div>
-                    <div class="name">Logout</div>
+                    <div class="name"><form action="/logout" method="post"><button>Logout</button></form></div>
                 </div>
+                <div class="nav-items-wrap hidden"></div>
             </div>
+           </div>
         </nav>
 
         <!--start of body-->
@@ -111,7 +136,7 @@
                    </a>
                 </div>
 
-                <%- include("./partials/dashboard/deposit")%>
+                <%- include("./partials/dashboard/referrals")%>
 
                 <div class="dash-body-footer">
                     Copyright © 2022 dormantaccountrefunds.com . All rights reserved.

@@ -13,8 +13,14 @@ body{
 }
 .dash-nav{
     width: auto;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 15px;
     box-shadow: 100px 102px black;
+}
+.dash-nav a{
+    text-decoration: none;
 }
 .dash-nav-welcome{
     padding: 50px 0 20% 0;
@@ -46,6 +52,10 @@ body{
 }
 .nav-sub-item a{
     text-decoration: none;
+    font-size: 14px;
+}
+.nav-sub-item a:hover{
+    color: blue;
 }
 .dash-nav-items{
     /*border-top: 0.001em solid rgb(204, 194, 194);*/
@@ -162,7 +172,7 @@ body{
     background-color: white;
     box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
 }
-.deposit-div{
+.deposit-div, .withdraw-div, .history-div, .ref-div{
     width: 80%;
     margin: 5% auto;
     padding: 3%;
@@ -195,10 +205,93 @@ body{
 .dd-name{
     font-weight: bold;
 }
-.submit-div button, .submit-div a{
+.submit-div button, .submit-div a, .submit-history-search{
     text-decoration: none;
     color: white;
     padding: 10px;
     border-radius: 30px;
     background-color: blue;
+}
+
+/*withdraw page styles*/
+.withdraw-div div{
+    margin: 10px 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.papa{
+    display: flex;
+    justify-content: space-evenly;
+}
+.papa-el-head{
+    font-weight: 700;
+}
+
+/*history page styles*/
+.date-format{
+    font-size: 12px;
+    color: rgb(204, 194, 194);
+}
+.history-search-params{
+    display: flex;
+    justify-content: space-between;
+}
+.history-header{
+    padding: 2%;
+}
+.history-items{
+    border: 1px solid rgb(235, 228, 228);
+    background-color: rgb(235, 228, 228);
+    margin-bottom: 20px;
+}
+.history-search-divs{
+    padding: 2%;
+    border-left: 1px solid rgb(235, 228, 228);
+}
+.history-search-params, .history-display-head, .history-display-body, .history-total{
+    background-color: white;
+}
+.history-search-divs div{
+    margin: 15px 0;
+}
+.history-display-head, .history-display-body, .history-total{
+    display: flex;
+    justify-content: space-between;
+}
+.hdh-item, .hdb-item{
+    width: 30%;
+    padding: 2%;
+    border-left: 1px solid rgb(235, 228, 228);
+}
+.history-total div{
+    padding: 20px;
+}
+
+/*referal page styles*/
+.ref-link-copy{
+    display: flex;
+    margin: 15px 0;
+}
+.ref-link-copy input{
+    padding: 5px;
+    width: 40%;
+    font-size: 16px;
+    color: rgb(94, 78, 78);
+    background-color: aliceblue;
+    border: none;
+    font-family: 'Nunito Sans', sans-serif;
+    pointer-events: none;
+}
+.cpy{
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-left: 2px;
+    border: 1px solid gray;
+}
+.cpy:hover{
+    cursor: pointer;
+    background-color: rgb(28, 31, 182);
+    color: white;
+}
+.ref-info{
+    margin: 20px 0;
 }
