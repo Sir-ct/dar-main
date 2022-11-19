@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Nunito+Sans&family=Nunito:ital,wght@0,300;1,400&family=Secular+One&display=swap');
 body{
     margin: 0;
     padding: 0;
@@ -17,7 +18,15 @@ body{
     overflow-y: auto;
     overflow-x: hidden;
     padding: 15px;
-    box-shadow: 100px 102px black;
+}
+.dash-nav.collapse{
+    width: 3%;
+}
+.dash-nav.collapse .dash-nav-welcome, 
+.dash-nav.collapse .nav-item-title, 
+.dash-nav.collapse .name, 
+.dash-nav.collapse .toggle-icon{
+    opacity: 0;
 }
 .dash-nav a{
     text-decoration: none;
@@ -39,6 +48,11 @@ body{
     display: flex;
     padding: 15px 0;
     color: rgb(92, 83, 83);
+}
+.nav-item-tab button{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
 }
 .nav-item-tab div{
     padding: 10px;
@@ -172,7 +186,7 @@ body{
     background-color: white;
     box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
 }
-.deposit-div, .withdraw-div, .history-div, .ref-div{
+.deposit-div, .withdraw-div, .history-div, .ref-div, .profile-div{
     width: 80%;
     margin: 5% auto;
     padding: 3%;
@@ -205,7 +219,7 @@ body{
 .dd-name{
     font-weight: bold;
 }
-.submit-div button, .submit-div a, .submit-history-search{
+.submit-div button, .submit-div a, .submit-history-search, .approve-deposit{
     text-decoration: none;
     color: white;
     padding: 10px;
@@ -224,6 +238,12 @@ body{
 }
 .papa-el-head{
     font-weight: 700;
+}
+.available-el{
+    color: red;
+}
+.pending-el{
+    color: rgb(53, 187, 46);
 }
 
 /*history page styles*/
@@ -273,7 +293,7 @@ body{
 }
 .ref-link-copy input{
     padding: 5px;
-    width: 40%;
+    width: 50%;
     font-size: 16px;
     color: rgb(94, 78, 78);
     background-color: aliceblue;
@@ -294,4 +314,98 @@ body{
 }
 .ref-info{
     margin: 20px 0;
+}
+
+/*profile page styles*/
+.profile-div-wrap{
+    margin: 2%;
+}
+.profile-div-items{
+    width: 50%;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.profile-div-items input{
+    padding: 2%;
+    border: 1px solid rgb(204, 194, 194);
+}
+
+/*admin panel styles*/
+.deposit-req-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.deposit-req{
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    box-shadow: 1px 1px 5px 5px rgb(235, 228, 228);
+}
+
+@media(max-width: 799px){
+    .dash-nav{
+        width: auto;
+        height: auto;
+        display: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 15px;
+        box-shadow: 1px 1px 5px 5px rgb(235, 228, 228);
+    }
+    .dash-nav.show{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 10;
+    }
+    .dash-nav.collapse{
+        width: auto;
+    }
+    .dash-nav.collapse .dash-nav-welcome, 
+    .dash-nav.collapse .nav-item-title, 
+    .dash-nav.collapse .name, 
+    .dash-nav.collapse .toggle-icon{
+        opacity: 1;
+    }
+    .dash-body{
+        min-height: 100vh;
+    }
+    .dash-body-wrap{
+        height: 100%;
+    }
+    .dash-body-header{
+      position: fixed;
+      z-index: 100;
+    }
+    .dash-body-nav{
+        padding-top: 20%;
+        align-items: center;
+    }
+    .dash-body-footer{
+        position: relative;
+        bottom: 0;
+    }
+
+    /*deposit inside body*/
+    .dash-body-acct-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .dash-acct-info-item{
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 5%;
+        background-color: white;
+        box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
+    }
+    /*history*/
+    .history-search-params{
+        overflow-x: auto;
+    }
 }

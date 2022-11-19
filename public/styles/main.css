@@ -36,9 +36,9 @@ img{
     font-size: 35px;
     color: rgb(122, 192, 105);
 }
-#header{
+.header{
     height: 99vh;
-    background-image: url(../images/trading2.jpg);
+    background-image: url("../images/trading1.jpg");
     background-repeat: no-repeat;
     background-size: cover; 
     background-position-x: right;
@@ -46,7 +46,7 @@ img{
 }
 /*carousel related styles*/
 .switchbg{
-    background-image: url(../images/trading1.jpg)
+    background-image: url("../images/trading2.jpg")
 }
 .hidden{
     display: none;

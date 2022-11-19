@@ -19,3 +19,5 @@ let ReferalSchema = new mongoose.Schema({
         type: Array
     }
 })
+
+module.exports = new mongoose.model("refdata", ReferalSchema)

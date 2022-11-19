@@ -8,17 +8,48 @@
               <div>
                 <select name="transaction-type">
                     <option value="all">All Transactions</option>
-                    <option value="deposit">Deposit</option>
-                    <option value="withdrawal">Withdrawal</option>
-                    <option value="earnings">Earnings</option>
-                    <option value="referral">Referral Commissions</option>
+                    <%if(type == "deposit"){%>
+                        <option value="deposit" selected>
+                            Deposit
+                        </option>
+                    <%}else{%>
+                        <option value="deposit" >
+                            Deposit
+                        </option>
+                    <%}%>
+                    <%if(type == "withdrawal"){%>
+                        <option value="withdrawal" selected>
+                            Withdrawal
+                        </option>
+                    <%}else{%>
+                        <option value="withdrawal">
+                            Withdrawal
+                        </option>
+                    <%}%>
+                    <option value="earnings">
+                        Earnings
+                    </option>
+                    <%if(type == "commissions"){%>
+                        <option value="referral" selected>
+                            Referral Commissions
+                        </option>
+                    <%}else{%>
+                        <option value="referral">
+                            Referral Commissions
+                        </option>
+                    <%}%>
+
                 </select>
               </div>
 
                 <div>
                     <select name="transaction-currency" id="">
-                        <option value="all">All ecurrencies</option>
-                        <option value="bitcoin">Bitcoin</option>
+                        <option value="all" >
+                            All ecurrencies
+                        </option>
+                        <option value="bitcoin">
+                            Bitcoin     
+                        </option>
                         <option value="ethreum">Ethereum</option>
                         <option value="trc20">Trc20</option>
                     </select>

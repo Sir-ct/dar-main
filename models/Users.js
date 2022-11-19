@@ -18,6 +18,10 @@ const UsersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isadmin: {
+        type: Boolean,
+        default: false
+    },
     bitcoinaddress: {
         type: String
     },
@@ -28,30 +32,12 @@ const UsersSchema = new mongoose.Schema({
         type: String
     },
     account: {
-        required: true,
-        deposits: {
-            amount: {type: Number, default: 0.00},
-            name:{type: String, default: "Deposits"},
-            description: {type: String, default: "Total amount invested"},
-            date: {default: Date.now()}
-        },
-        withdraws: {
-            amount: {type: Number, default: 0.00},
-            name: {type: String, default: "Withdraws"},
-            description: {type: String, default: "total amount withdrawn"},
-            date: {default: Date.now()}
-        },
-        activedeposits: {
-            amount: {type: Number, default: 0.00},
-            name: {type: String, default: "Active Deposits"},
-            description: {type: String, default: "Total active invest"},
-            date: {default: Date.now()}
-        },
-        currentballance: {
-            amount: {type: Number, default: 0.00},
-            name: {type: String, default: "Current Ballance"},
-            description: {type: String, default: "Total withdrawable ballance"}
-        }
+        type: Object,
+        required: true
+    },
+    lastLoggedIn: {
+        type: Date, 
+        default: Date.now()
     },
     timeJoined:{
         type: Date,
@@ -59,3 +45,5 @@ const UsersSchema = new mongoose.Schema({
         default: Date.now()
     }
 })
+
+module.exports = new mongoose.model("users", UsersSchema)

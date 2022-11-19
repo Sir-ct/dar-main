@@ -41,10 +41,10 @@
             Deposits
         </div>
         <div class="item-value">
-            &pound;0.00
+            &pound;<%= userdetails.account.deposits.amount%>
         </div>
         <div class="item-info">
-            <ion-icon name="information-circle-outline"></ion-icon> Total withdrawals
+            <ion-icon name="information-circle-outline"></ion-icon> <%= userdetails.account.deposits.description%>
         </div>
     </div>
 
@@ -53,9 +53,11 @@
             Withdrawals
         </div>
         <div class="item-value">
-            &pound;0.00
+            &pound;<%= userdetails.account.withdraws.amount%>
         </div>
-        <div class="item-info"></div>
+        <div class="item-info">
+          <ion-icon name="information-circle-outline"></ion-icon> <%= userdetails.account.withdraws.description%>
+        </div>
     </div>
 
     <div class="dash-acct-info-item">
@@ -63,9 +65,11 @@
             Active Deposits
         </div>
         <div class="item-value">
-            &pound;0.00
+            &pound;<%=userdetails.account.activedeposits.amount %>
         </div>
-        <div class="item-info"></div>
+        <div class="item-info">
+          <ion-icon name="information-circle-outline"></ion-icon> <%= userdetails.account.activedeposits.description%>
+        </div>
     </div>
 
     <div class="dash-acct-info-item">
@@ -73,9 +77,11 @@
             Current Balance
         </div>
         <div class="item-value">
-            &pound;0.00
+            &pound;<%= userdetails.account.currentballance.amount%>
         </div>
-        <div class="item-info"></div>
+        <div class="item-info">
+          <ion-icon name="information-circle-outline"></ion-icon> <%= userdetails.account.currentballance.description%>
+        </div>
     </div>
 </div>
 

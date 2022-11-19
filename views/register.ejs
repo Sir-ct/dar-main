@@ -17,15 +17,21 @@
         <div class="ss-title">
             Enter all required details:
         </div>
-
+        <%if(msg){%>
+            <%= msg %>
+        <%}%>
         <form  id="form" action="/registerdar" method="post">
             <input type="text" placeholder="Full name" name="fullname" required>
             <input type="text" placeholder="Username" name="username" required>
             <input type="email" placeholder="Email Address" name="email" required>
             <input type="password" placeholder="password" name="password" required>
             <input type="password" placeholder="confirm password" name="confirmpass" required>
-            <div class="referrer">Upline: </div>
-           <div class="t-c">I agree to terms and conditions <input type="checkbox" checked></div>
+            <div class="referrer">Upline: 
+                <%if(referrer){%> 
+                     <input type="text" value= <%=referrer%> name="upline" style="pointer-events: none;">
+                <%}%>
+            </div>
+           <div class="t-c">I agree to terms and conditions <input type="checkbox" name="tac" checked></div>
             <button type="submit">SignUp</button>
         </form>
     </div>

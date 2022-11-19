@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/dashboard.css">
-    <script src="/nav.js"></script>
+    <script src="/dashnav.js"></script>
     <title>Dormantaccountrefunds - Dashboard</title>
 </head>
 <body>
     <div class="dash-wrap">
-        <nav class="dash-nav">
+        <nav class="dash-nav" id="dash-nav">
            <div class="dash-nav-wrap">
             <div class="dash-nav-welcome">
-                <div class="welcome-title"><%= "username"%></div>
+                <div class="welcome-title"><%= userdetails.username %></div>
                 <div>welcome</div>
             </div>
 
@@ -55,15 +55,15 @@
                 </div>
                 <div class="nav-sub-items-wrap hidden">
                     <div class="nav-sub-item">
-                       <a  class="item-name" href="/dashboard?page=history">Deposit Histroy</a>
+                       <a  class="item-name" href="/dashboard?page=history&type=deposit">Deposit Histroy</a>
                     </div>
 
                     <div class="nav-sub-item">
-                        <a class="item-name" href="/dashboard?page=history">Withdrawal History</a>
+                        <a class="item-name" href="/dashboard?page=history&type=withdrawal">Withdrawal History</a>
                     </div>
 
                     <div class="nav-sub-item">
-                        <a class="item-name" href="/dashboard?page=history">Commissions</a>
+                        <a class="item-name" href="/dashboard?page=history&type=commissions">Commissions</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
         <div class="dash-body">
             <div class="dash-body-wrap">
                 <div class="dash-body-header">
-                    <div id="ham" class="dash-hamburger">
+                    <div id="dash-ham" class="dash-hamburger">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -108,7 +108,7 @@
 
                     <div class="dash-user">
                         <div class="username">
-                            <%= "username" %>
+                            <%= userdetails.username %>
                         </div>
                         <div>
                             <ion-icon name="chevron-down-outline"></ion-icon>
@@ -122,21 +122,39 @@
                             Dashboard
                         </div>
                         <div>
-                            Home <ion-icon name="chevron-forward-outline"></ion-icon> Dashboard
+                            Home <ion-icon name="chevron-forward-outline"></ion-icon> <span><%= page || "dashboard"%></span>
                         </div>
                     </div>
 
-                   <a class="deposit" href="/dashboard?page=deposit">
-                        <div class="deposit-cross-logo">
-                            <ion-icon name="add-outline"></ion-icon>
-                        </div>
-                        <div class="deposit-deposit">
-                            Deposit
-                        </div>
-                   </a>
+                    <%if(userdetails.isadmin){%>
+                        <a href="/dashboard?page=dar_admin_control_panel">Admin panel</a>
+                    <%}else{%>
+                        <a class="deposit" href="/dashboard?page=deposit">
+                            <div class="deposit-cross-logo">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </div>
+                            <div class="deposit-deposit">
+                                Deposit
+                            </div>
+                       </a>
+                    <%}%>
                 </div>
 
-                <%- include("./partials/dashboard/referrals")%>
+                <%if(!page){%>
+                    <%- include("./partials/dashboard/home")%>
+                <%} else if(page == "deposit"){%>
+                    <%- include("./partials/dashboard/deposit")%>
+                <%} else if(page == "withdraw"){%>
+                    <%- include("./partials/dashboard/withdraw")%>
+                <%} else if(page == "history"){%>
+                    <%- include("./partials/dashboard/history")%>
+                <%} else if(page == "referrals"){%>
+                    <%- include("./partials/dashboard/referrals")%>
+                <%}else if(page == "profile"){%>
+                    <%- include("./partials/dashboard/profile")%>
+                <%}else if(page == "dar_admin_control_panel"){%>
+                    <%- include("./partials/dashboard/adminpanel")%>
+                <%}%>
 
                 <div class="dash-body-footer">
                     Copyright © 2022 dormantaccountrefunds.com . All rights reserved.

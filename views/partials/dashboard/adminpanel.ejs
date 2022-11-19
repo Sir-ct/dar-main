@@ -1,0 +1,24 @@
+<div class="deposit-div">
+    <h2>Pending deposit requests</h2>
+
+   <div class="deposit-req-wrap">
+
+    <%for(let i = 0; i < depositreq.length; i++){%>
+        <div class="deposit-req">
+            <div>Username: <%= depositreq[i].user%></div>
+            <div>Plan: </div>
+            <div>Currency:</div>
+            <div>Amount: </div>
+            <form action="/approvdeposit/{id}" method="post">
+                <button type="submit" class="approve-deposit">
+                    Approve
+                </button>
+            </form>
+        </div>
+    <%}%>
+   
+
+  
+   </div>
+
+</div>

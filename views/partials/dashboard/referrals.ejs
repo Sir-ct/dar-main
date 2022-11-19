@@ -3,13 +3,13 @@
         Referral Link
     </h3>
     <div class="ref-link-copy">
-        <input type="text" value="https://dormantaccountrefunds.org/signup?ref=mmakasi">
+        <input type="text" value=<%= refdata.reflink %>>
         <div class="cpy">
             Copy
         </div>
     </div>
     <div>
-        You were referred by: 
+        You were referred by: <%= refdata.referrer%>
     </div>
 </div>
 
@@ -19,8 +19,8 @@
     </h3>
     
     <div class="referred-users-details">
-        <div class="ref-info">Referred Users: </div>
-        <div class="ref-info">Active Users: </div>
-        <div class="ref-info">Commissions Earned: &pound;</div>
+        <div class="ref-info">Referred Users: <%= refdata.yourrefs.length %> </div>
+        <div class="ref-info">Active Users: <%= refdata.yourrefs.length%> </div>
+        <div class="ref-info">Commissions Earned: &pound;<%= refdata.yourrefs.length * 10%></div>
     </div>
 </div>

@@ -1,0 +1,54 @@
+<div class="profile-div">
+  <form action="/edit-profile" method="post">
+    <h3>
+        Profile Details
+    </h3>
+    <div class="profile-div-wrap">
+        <div class="profile-div-items">
+            <div>Account name:</div>
+            <div><%= userdetails.username%></div>
+        </div>
+
+        <div class="profile-div-items">
+            <div>Registration date:</div>
+            <div><%= new Date(userdetails.timeJoined).toDateString() %></div>
+        </div>
+
+        <div class="profile-div-items">
+            <div>Full name:</div>
+            <input type="text" name="fullname" value="<%= userdetails.fullname%>">
+        </div>
+
+        <div class="profile-div-items">
+            <div>New password:</div>
+            <input type="password" name="newpass" >
+        </div>
+
+        <div class="profile-div-items">
+            <div>Retype password:</div>
+            <input type="password" name="retypepass">
+        </div>
+
+        <div class="profile-div-items">
+            <div>Bitcoin wallet address:</div>
+            <input type="text" name="btcaddr" value="<%=userdetails.bitcoinaddress%>">
+        </div>
+
+        <div class="profile-div-items">
+            <div>Ethereum wallet address:</div>
+            <input type="text" name="ethaddr" value="<%= userdetails.ethereumaddress%>">
+        </div>
+
+        <div class="profile-div-items">
+            <div>Trc20 wallet address:</div>
+            <input type="text" name="trcaddr" value="<%= userdetails.trc20address%>">
+        </div>
+
+        <div class="profile-div-items">
+            <div>Email address:</div>
+            <input type="email" name="email" value=<%= userdetails.email %> style="pointer-events: none;">
+        </div>
+    </div>
+    <button type="submit" class="submit-history-search">Change account info</button>
+  </form>
+</div>

@@ -1,4 +1,7 @@
 function main(){
+
+    popnotif()
+
     //mobile nav script
     let hamburger = document.getElementById("ham")
     let menu = document.getElementById("nav-items")
@@ -8,15 +11,40 @@ function main(){
         menu.classList.toggle("nav-display")
     })
 
-    //dashboard nav script
-    let navtabs = document.getElementsByClassName("nav-item-tab")
-    let subtabs = document.getElementsByClassName("nav-sub-items-wrap")
+     //pop up notification element declaration
+     let popup = document.getElementById("notification-bar")
 
-    for(let i=0; i < navtabs.length; i++){
-        navtabs[i].addEventListener("click", ()=>{
-            subtabs[i].classList.toggle("hidden")
-        })
+     function removepop(){
+      
+        popup.style.display = ""
     }
+
+    function invested(){
+        let locations = ["egypt", "mecca", "texas", "rome", "greece", "sweden", "los Angeles"]
+        let action = ["deposited", "withdrew"]
+        let randomaction = Math.floor(Math.random()*action.length )
+        let randomcountry = Math.floor(Math.random() * locations.length)
+        let randomamount = Math.floor(Math.random() * 20000) + 500
+        
+       popup.innerHTML = ` <ion-icon name="checkmark-circle-outline"></ion-icon> 
+        <p>an investor from ${locations[randomcountry]} ${action[randomaction]} &pound;${randomamount}</p>`
+        popup.style = "display: flex"
+
+        setTimeout(()=>{
+        removepop()
+
+        return
+      }, 2000)
+    }
+
+     function popnotif(){
+
+    setInterval(() => {
+
+        invested()
+
+    }, 6000);
+   }
              
 }
     

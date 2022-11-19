@@ -17,10 +17,12 @@
         <div class="ss-title">
             Login:
         </div>
-
+        <% if(messages.error){%>
+            <%= messages.error %>
+        <% } %>
         <form  id="form" action="/logindar" method="post">
-            <input type="text" placeholder="username">
-            <input type="password" placeholder="password">
+            <input type="text" placeholder="username" name="username">
+            <input type="password" placeholder="password" name="password">
             <a href="/passwordforgot" class="forgot-password"> Forgot password?</a>
             <button type="submit">Login</button>
         </form>

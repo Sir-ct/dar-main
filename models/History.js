@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 let HistroySchema = new mongoose.Schema({
-    userId: {
+    userid: {
+        type: String,
         required: true
     },
     type: {
@@ -14,10 +15,12 @@ let HistroySchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now()
+        default: new Date()
     },
     currency:{
         type: String,
         required: true
     }
 })
+
+module.exports = new mongoose.model("transhistory", HistroySchema)
