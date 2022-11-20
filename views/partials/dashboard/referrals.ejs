@@ -3,8 +3,8 @@
         Referral Link
     </h3>
     <div class="ref-link-copy">
-        <input type="text" value=<%= refdata.reflink %>>
-        <div class="cpy">
+        <input  id="ref-link" type="text" value=<%= refdata.reflink %>>
+        <div class="cpy" id="copylink">
             Copy
         </div>
     </div>
@@ -24,3 +24,20 @@
         <div class="ref-info">Commissions Earned: &pound;<%= refdata.yourrefs.length * 10%></div>
     </div>
 </div>
+<script>
+    let copyBtn = document.getElementById("copylink")
+
+    copyBtn.addEventListener("click", ()=>{
+        let link = document.getElementById("ref-link");
+
+        // Select the text field
+        link.select();
+        link.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(link.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + link.value);
+    })
+</script>
