@@ -92,10 +92,10 @@ nav{
     color: white;
     font-family: sans-serif;
 }
-.contact{
+.contact, .contact-abt, .getstarted{
     background-color: rgb(95, 194, 95);
 }
-.contact a{
+.contact a, .contact-abt a, .getstarted a{
     color: white;
     text-transform: capitalize;
     text-decoration: none;
@@ -400,6 +400,13 @@ footer{
 @media (max-width: 1200px){
     .contact{
         display: none;
+    }
+    .btn.getstarted, .btn.contact-abt{
+        width: 30%;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 16px;
+        margin: 10px auto;
     }
 }
 

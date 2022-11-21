@@ -201,7 +201,7 @@ body{
 .deposit-submit{
     display: flex;
     justify-content: space-between;
-    width: 10%;
+    width: 80px;
     font-size: 15px;
     color: white;
     padding: 10px;
@@ -407,5 +407,12 @@ body{
     /*history*/
     .history-search-params{
         overflow-x: auto;
+    }
+    /*profile*/
+    .profile-div-items{
+        width: 100%;
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
     }
 }

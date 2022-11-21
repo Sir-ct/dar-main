@@ -6,9 +6,9 @@
     <%for(let i = 0; i < depositreq.length; i++){%>
         <div class="deposit-req">
             <div>Username: <%= depositreq[i].user%></div>
-            <div>Plan: </div>
-            <div>Currency:</div>
-            <div>Amount: </div>
+            <div>Plan: <%= depositreq[i].plan%> </div>
+            <div>Currency: <%= depositreq[i].currency%></div>
+            <div>Amount: <%= depositreq[i].amount%></div>
             <form action="/approvdeposit/{id}" method="post">
                 <button type="submit" class="approve-deposit">
                     Approve
