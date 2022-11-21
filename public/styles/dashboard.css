@@ -127,7 +127,7 @@ body{
 /*deposit inside dash*/
 .deposit{
     display: flex;
-    width: 10%;
+    width: 80px;
     height: 30px;
     text-decoration: none;
     justify-content: center;

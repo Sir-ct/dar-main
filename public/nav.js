@@ -45,6 +45,13 @@ function main(){
 
     }, 6000);
    }
+
+   //showpassword
+   let showpass = document.getElementById("showpass")
+
+   showpass.addEventListener("click", ()=>{
+        document.getElementById("password").type = "text"
+   })
              
 }
     
