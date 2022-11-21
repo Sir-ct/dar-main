@@ -50,7 +50,13 @@ function main(){
    let showpass = document.getElementById("showpass")
 
    showpass.addEventListener("click", ()=>{
-        document.getElementById("password").type = "text"
+       let password = document.getElementById("password")
+
+       if(password.type == "password"){
+        password.type = "text"
+       }else{
+        password.type = "password"
+       }
    })
              
 }
