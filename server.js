@@ -131,26 +131,10 @@ app.post("/registerdar", async (req, res)=>{
                     email: req.body.email,
                     password: hash,
                     account: {
-                        deposits: {
-                            amount:  0.00,
-                            name: "Deposits",
-                            description: "Total amount invested"
-                        },
-                        withdraws: {
-                            amount:  0.00,
-                            name: "Withdraws",
-                            description: "total amount withdrawn"
-                        },
-                        activedeposits: {
-                            amount: 0.00,
-                            name:  "Active Deposits",
-                            description: "Total active invest"
-                        },
-                        currentballance: {
-                            amount: 0.00,
-                            name:  "Current Ballance",
-                            description: "Total withdrawable ballance"
-                        }
+                        deposits: 0,
+                        withdraws: 0,
+                        activedeposits: 0,
+                        currentballance : 0
                     }
                 })
         
@@ -162,8 +146,12 @@ app.post("/registerdar", async (req, res)=>{
                     let referrerdata = await Refdata.findOne({userid: referrer._id})
                      referrerdata.yourrefs.push(saveuser.username)
 
+                    let upline = await Users.findById(referrer._id)
+                    upline.account = {...upline.account, currentballance: upline.account.currentballance + 10}
+
+                    upline = await upline.save()
                     referrerdata = await referrerdata.save()
-                    console.log(referrerdata.yourrefs)
+                    console.log(referrerdata.yourrefs, upline)
                 }
 
                 await new Refdata({
@@ -197,7 +185,8 @@ app.post("/logindar", passport.authenticate("local", {
 
 //deposit post route
 app.post("/depositfunds", async (req, res)=>{
-    console.log(req.body)
+    req.body.amount = parseInt(req.body.amount)
+    console.log(req.body, typeof req.body.amount)
     let deposit = new Deposits({
         user: req.user.username,
         plan: req.body.plan,
@@ -207,6 +196,32 @@ app.post("/depositfunds", async (req, res)=>{
     })
 
     deposit = await deposit.save()
+    res.redirect("/dashboard")
+})
+
+//approving deposit requests
+app.post("/approvedeposit/:id", async (req, res)=>{
+    let deposit = await Deposits.findById(req.params.id)
+    let user = await Users.findOne({username: deposit.user})
+
+    user.account = {...user.account, activedeposits: user.account.deposits + deposit.amount, deposits: user.account.deposits + deposit.amount}
+
+
+    deposit.status = 'approved'
+
+    let history = new History({
+        userid: user.id,
+        type: 'deposit',
+        amount: deposit.amount,
+        currency: deposit.currency
+    })
+
+    user = await user.save()
+   await deposit.save()
+   await history.save()
+
+    console.log(req.params, deposit, user.account)
+
     res.redirect("/dashboard")
 })
 

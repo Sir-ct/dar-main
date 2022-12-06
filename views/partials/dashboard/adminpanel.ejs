@@ -9,7 +9,7 @@
             <div>Plan: <%= depositreq[i].plan%> </div>
             <div>Currency: <%= depositreq[i].currency%></div>
             <div>Amount: <%= depositreq[i].amount%></div>
-            <form action="/approvdeposit/{id}" method="post">
+            <form action="/approvedeposit/<%= depositreq[i].id %>" method="post">
                 <button type="submit" class="approve-deposit">
                     Approve
                 </button>
