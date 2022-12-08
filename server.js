@@ -84,6 +84,7 @@ app.get("/passwordforgot", isLoggedOut, (req, res)=>{
 })
 
 app.get("/dashboard", isLoggedIn, async (req, res)=>{
+    let user = await Users.findById(req.user._id)
     let history
     let depositreq = await Deposits.find({status: "pending"})
     let refdata = await Refdata.findOne({userid: req.user._id})
@@ -91,7 +92,7 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
         history = await History.find({userid: req.user._id, type:req.query.type})
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: req.user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, msg: ""})
 })
 
 //post routes start here
@@ -223,6 +224,50 @@ app.post("/approvedeposit/:id", async (req, res)=>{
     console.log(req.params, deposit, user.account)
 
     res.redirect("/dashboard")
+})
+
+//edit profile route
+app.post("/editprofile/:id", isLoggedIn, async (req, res)=>{
+
+    let user = await Users.findById(req.params.id)
+
+   if(req.body.newpass){
+        if(req.body.newpass !== req.body.retypepass){
+            profileupdateError("The two passwords do not match")
+            return
+        } else {
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(req.body.newpass, salt, async function(err, hash) {
+                    user.password = hash
+                    user.bitcoinaddress = req.body.btcaddr
+                    user.ethereumaddress = req.body.ethaddr
+                    user.trc20address = req.body.trcaddr
+                 
+                    console.log("password changed")
+                    edituser()
+                })
+            })
+        }
+    }else{
+        user.bitcoinaddress = req.body.btcaddr
+        user.ethereumaddress = req.body.ethaddr
+        user.trc20address = req.body.trcaddr
+     
+        edituser()
+    }
+    
+   
+
+   function edituser(){
+    user.save()
+        req.logout((err)=>{
+            res.redirect("/login")
+        })
+   }
+
+    function profileupdateError(msg){
+        res.render("dashboard", {page: 'profile', userdetails: user, msg: msg /*refdata: refdata, history: history, type: req.query.type, depositreq: depositreq*/})
+    }
 })
 
 //logout

@@ -1,8 +1,11 @@
 <div class="profile-div">
-  <form action="/edit-profile" method="post">
+  <form action="/editprofile/<%= userdetails.id %>" method="post">
     <h3>
         Profile Details
     </h3>
+    <%if(msg != ""){%>
+        <p style="color: red; font-weight: bold"><%= msg %></p>
+    <%}%>
     <div class="profile-div-wrap">
         <div class="profile-div-items">
             <div>Account name:</div>

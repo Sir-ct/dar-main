@@ -24,13 +24,16 @@ let UsersSchema = new mongoose.Schema({
         default: false
     },
     bitcoinaddress: {
-        type: String
+        type: String,
+        default: ""
     },
     ethereumaddress: {
-        type: String
+        type: String,
+        default: ""
     },
     trc20address: {
-        type: String
+        type: String,
+        default: ""
     },
     account: {
         type: Object,

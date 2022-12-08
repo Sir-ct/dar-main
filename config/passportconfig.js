@@ -9,16 +9,15 @@ function initpassport(passport){
         if(!user){
             return done(null, false, {message: "user does not exist"})
         }
-        if(!password){
-            return done(null, false, {message:"password field cannot be empty"})
-        }
-        let isMatch = bcrypt.compare(password, user.password)
+        else{
+             let isMatch = await bcrypt.compare(password, user.password)
 
-        if(isMatch){
-            return done(null, user)
+            if(isMatch){
+                return done(null, user)
+            }else{
+                return done(null, false, {message: "password is incorrect"})
+            }
         }
-
-        return done(null, false, {message: "password id incorrect"})
     }))
 
     passport.serializeUser((user, done)=>{
