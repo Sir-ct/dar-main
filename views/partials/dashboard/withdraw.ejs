@@ -2,8 +2,8 @@
     <div>
         Withdrawal of funds: from this page you can submit your withdrawal request
     </div>
-    <div class="ballance">Account ballance: &pound;<span><%= userdetails.account.currentballance.amount%></span> </div>
-    <div class="pending">Pending withdrawal: &pound;<span><%= userdetails.account.activedeposits.amount%></span></div>
+    <div class="ballance">Account ballance: &pound;<span><%= userdetails.account.currentballance%></span> </div>
+    <div class="pending">Pending withdrawal: &pound;<span><%= userdetails.account.activedeposits%></span></div>
     <div class="papa">
         <div class="papa-elements processing">
             <div class="papa-el-head">Processing</div>
@@ -13,15 +13,15 @@
         </div>
         <div class="papa-elements available">
             <div class="papa-el-head">Available</div>
-            <div class="available-el">&pound;<%= userdetails.account.currentballance.amount*15 %></div>
-            <div class="available-el">&pound;<%= userdetails.account.currentballance.amount*15 %></div>
-            <div class="available-el">&pound;<%= userdetails.account.currentballance.amount*15 %></div>
+            <div class="available-el">&pound;<%= userdetails.account.currentballance*15 %></div>
+            <div class="available-el">&pound;<%= userdetails.account.currentballance*15 %></div>
+            <div class="available-el">&pound;<%= userdetails.account.currentballance*15 %></div>
         </div>
         <div class="papa-elements pending">
             <div class="papa-el-head">Pending</div>
-            <div class="pending-el">&pound;<%= userdetails.account.activedeposits.amount%></div>
-            <div class="pending-el">&pound;<%= userdetails.account.activedeposits.amount%></div>
-            <div class="pending-el">&pound;<%= userdetails.account.activedeposits.amount%></div>
+            <div class="pending-el">&pound;<%= userdetails.account.activedeposits%></div>
+            <div class="pending-el">&pound;<%= userdetails.account.activedeposits%></div>
+            <div class="pending-el">&pound;<%= userdetails.account.activedeposits%></div>
         </div>
         <div class="papa-elements account">
             <div class="papa-el-head">Account</div>
