@@ -16,8 +16,29 @@
             </form>
         </div>
     <%}%>
-   
+  
+   </div>
 
+   <h2>Approved deposits</h2>
+
+   <div class="deposit-req-wrap">
+
+    <%for(let i = 0; i < approvedreq.length; i++){%>
+        <div class="deposit-req">
+            <div>Username: <%= approvedreq[i].user%></div>
+            <div>Plan: <%= depositreq[i].plan%> </div>
+            <div>Currency: <%= approvedreq[i].currency%></div>
+            <div>Amount: <%= approvedreq[i].amount%></div>
+            <hr />
+            <form action="/addballance/<%= approvedreq[i].id %>" method="post">
+                <div>Update user ballance</div>
+                <input type="number" name="newbal">
+                <button type="submit" class="approve-deposit">
+                    Add ballance
+                </button>
+            </form>
+        </div>
+    <%}%>
   
    </div>
 

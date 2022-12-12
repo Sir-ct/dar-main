@@ -87,12 +87,13 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let user = await Users.findById(req.user._id)
     let history
     let depositreq = await Deposits.find({status: "pending"})
+    let approveddep = await Deposits.find({status: "approved"})
     let refdata = await Refdata.findOne({userid: req.user._id})
     if(req.query.page == "history"){
         history = await History.find({userid: req.user._id, type:req.query.type})
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, msg: ""})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, msg: ""})
 })
 
 //post routes start here
@@ -202,6 +203,7 @@ app.post("/depositfunds", async (req, res)=>{
 
 //approving deposit requests
 app.post("/approvedeposit/:id", async (req, res)=>{
+    console.log(req.body)
     let deposit = await Deposits.findById(req.params.id)
     let user = await Users.findOne({username: deposit.user})
 
@@ -225,6 +227,22 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     res.redirect("/dashboard")
 })
+
+//adding ballance to user account
+app.post("/addballance/:id", async(req, res)=>{
+    console.log(req.body)
+    let deposit = await Deposits.findById(req.params.id)
+    let user = await Users.findOne({username: deposit.user})
+    let newballance = parseInt(req.body.newbal)
+
+    user.account = {...user.account, currentballance: user.account.currentballance + newballance}
+
+    user = await user.save()
+
+    console.log(user)
+    res.redirect("/dashboard")
+})
+
 
 //edit profile route
 app.post("/editprofile/:id", isLoggedIn, async (req, res)=>{
