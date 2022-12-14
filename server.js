@@ -238,7 +238,7 @@ if(req.body.withdrawamount > user.account.currentballance){
         currency: req.body.withdrawcurrency
     })
 
-    user.account = {...user.account, withdraws: req.body.withdraws + req.body.withdrawamount, activedeposits: 0, currentballance: user.account.currentballance - req.body.withdrawamount}
+    user.account = {...user.account, withdraws: user.account.withdraws + req.body.withdrawamount, activedeposits: 0, currentballance: user.account.currentballance - req.body.withdrawamount}
 
     withdrawal = await withdrawal.save()
     addhistory = await addhistory.save()
