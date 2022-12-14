@@ -11,7 +11,7 @@ let showamount = document.getElementById("amount-span")
 let showprofit = document.getElementById("profit-span")
 
 depositBtn.addEventListener("click", ()=>{
-    console.log("plan:" + plan.value + ", currency:" + currency.value + ", amount:" + amount.value)
+   // console.log("plan:" + plan.value + ", currency:" + currency.value + ", amount:" + amount.value)
 
     switch(plan.value){
         case 'basic':

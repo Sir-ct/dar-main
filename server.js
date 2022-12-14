@@ -12,6 +12,7 @@ const Users = require("./models/Users")
 const Refdata = require("./models/Referal")
 const History = require("./models/History")
 const Deposits = require("./models/Deposits")
+const Withdraws = require("./models/Withdraws")
 
 
 initpassport(passport)
@@ -88,12 +89,13 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let history
     let depositreq = await Deposits.find({status: "pending"})
     let approveddep = await Deposits.find({status: "approved"})
+    let withdraws = await Withdraws.find()
     let refdata = await Refdata.findOne({userid: req.user._id})
     if(req.query.page == "history"){
         history = await History.find({userid: req.user._id, type:req.query.type})
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, msg: ""})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, msg: "", withdraws: withdraws, withdrawmsg: ""})
 })
 
 //post routes start here
@@ -151,8 +153,18 @@ app.post("/registerdar", async (req, res)=>{
                     let upline = await Users.findById(referrer._id)
                     upline.account = {...upline.account, currentballance: upline.account.currentballance + 10}
 
+                    let addhistory = new History({
+                        userid: referrer._id,
+                        type: "commission",
+                        amount: 10,
+                        currency: ""
+                    })
+
                     upline = await upline.save()
                     referrerdata = await referrerdata.save()
+                    addhistory = await addhistory.save()
+
+                    
                     console.log(referrerdata.yourrefs, upline)
                 }
 
@@ -197,8 +209,44 @@ app.post("/depositfunds", async (req, res)=>{
         status: "pending"
     })
 
+
     deposit = await deposit.save()
     res.redirect("/dashboard")
+})
+
+//withdraw post route
+app.post("/withdrawfunds", isLoggedIn, async(req, res)=>{
+ req.body.withdrawamount = parseInt(req.body.withdrawamount)
+
+ let user = await Users.findOne({username: req.user.username})
+ console.log(req.body)
+
+if(req.body.withdrawamount > user.account.currentballance){
+    res.redirect("/dashboard")
+}else{
+    
+    let withdrawal = new Withdraws({
+        user: req.user.username,
+        amount: req.body.withdrawamount,
+        currency: req.body.withdrawcurrency
+    })
+
+    let addhistory = new History({
+        userid: user.id,
+        type: 'withdrawal',
+        amount: req.body.withdrawamount,
+        currency: req.body.withdrawcurrency
+    })
+
+    user.account = {...user.account, withdraws: req.body.withdraws + req.body.withdrawamount, activedeposits: 0, currentballance: user.account.currentballance - req.body.withdrawamount}
+
+    withdrawal = await withdrawal.save()
+    addhistory = await addhistory.save()
+    user = await user.save()
+
+    res.redirect("/dashboard")
+   
+}
 })
 
 //approving deposit requests

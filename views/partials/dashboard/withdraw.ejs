@@ -1,9 +1,13 @@
 <div class="withdraw-div">
+   <div class="withdraw-card">
+    <%if(withdrawmsg != ""){%>
+        <%= withrawmsg %>
+    <%}%>
     <div>
         Withdrawal of funds: from this page you can submit your withdrawal request
     </div>
     <div class="ballance">Account ballance: &pound;<span><%= userdetails.account.currentballance%></span> </div>
-    <div class="pending">Pending withdrawal: &pound;<span><%= userdetails.account.activedeposits%></span></div>
+    <div class="pending">Pending withdrawal: &pound;<span><%= userdetails.account.withdraws%></span></div>
     <div class="papa">
         <div class="papa-elements processing">
             <div class="papa-el-head">Processing</div>
@@ -48,7 +52,52 @@
             </div>
         </div>
     </div>
-    <div class="submit-withdraw">
-        
-    </div>
+
+    <% if(userdetails.account.currentballance > 0 && (userdetails.bitcoinaddress || userdetails.ethereumaddress || userdetails.trc20address)){%>
+        <div class="deposit-submit" id="withdraw-btn" type="submit">
+            <div class="submit">
+                Withdraw
+            </div>
+        </div>
+     <%}%>
+
+   </div>
+   
+       
+  <div class="withdraw-card hidden">
+      <form action="/withdrawfunds" method="post">
+          <p>Amount</p>
+          <input type="number" placeholder="Select amount" name="withdrawamount" value="500" />
+          <p>Currency</p>
+          <select  name="withdrawcurrency">
+              <% if(userdetails.bitcoinaddress){%>
+                  <option>Bitcoin</option>
+              <%}%>
+              <% if(userdetails.ethereumaddress){%>
+                  <option>Ethereum</option>
+              <%}%>
+              <% if(userdetails.trc20address){%>
+                  <option>Trc20</option>
+              <%}%>
+          </select>
+
+          <div class="submit-div">
+              <button type="submit">Confirm</button>
+          </div>
+      </form>
+  </div>
+       
+       
+    
 </div>
+
+<script>
+    let withdraw = document.getElementById("withdraw-btn")
+    let withdrawdivs = document.getElementsByClassName("withdraw-card")
+
+    withdraw.addEventListener("click", ()=>{
+        for(let i=0; i < withdrawdivs.length; i++){
+            withdrawdivs[i].classList.toggle("hidden")
+        }
+    })
+</script>

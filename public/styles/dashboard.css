@@ -406,6 +406,12 @@ body{
         background-color: white;
         box-shadow: 1px 1px 10px 5px rgb(235, 228, 228);
     }
+    /*withdraw inside body*/
+    .account-el{
+        position: relative;
+        width: 60px;
+        overflow: scroll;
+    }
     /*history*/
     .history-search-params{
         overflow-x: auto;

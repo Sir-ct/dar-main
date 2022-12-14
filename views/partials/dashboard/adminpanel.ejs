@@ -42,4 +42,18 @@
   
    </div>
 
+   <h2>Withdrawals</h2>
+
+   <div class="deposit-req-wrap">
+
+    <%for(let i = 0; i < withdraws.length; i++){%>
+        <div class="deposit-req">
+            <div>Username: <%= withdraws[i].user%></div>
+            <div>Currency: <%= withdraws[i].currency%></div>
+            <div>Amount: <%= withdraws[i].amount%></div>
+        </div>
+    <%}%>
+  
+   </div>
+
 </div>
