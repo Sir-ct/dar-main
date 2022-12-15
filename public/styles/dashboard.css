@@ -269,6 +269,7 @@ body{
 }
 .history-search-params, .history-display-head, .history-display-body, .history-total{
     background-color: white;
+    border-bottom: 1px solid rgb(235, 228, 228);
 }
 .history-search-divs div{
     margin: 15px 0;

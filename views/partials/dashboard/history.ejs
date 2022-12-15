@@ -1,4 +1,5 @@
 <div class="history-div">
+    <%let totalwithdraw = 0 %>
     <div class="history-items">
         <div class="history-header welcome-title">
             History:
@@ -6,7 +7,7 @@
         <form action="/searchtransactions" method="post" class="history-search-params">
             <div class="history-search-divs">
               <div>
-                <select name="transaction-type">
+                <select name="transactiontype">
                     <option value="all">All Transactions</option>
                     <%if(type == "deposit"){%>
                         <option value="deposit" selected>
@@ -43,7 +44,7 @@
               </div>
 
                 <div>
-                    <select name="transaction-currency" id="">
+                    <select name="transactioncurrency" id="">
                         <option value="all" >
                             All ecurrencies
                         </option>
@@ -116,10 +117,29 @@
             <div class="hdh-item">Amount</div>
             <div class="hdh-item">Date</div>
         </div>
-        <p style="text-align: center; color: grey;">No transactions</p>
+       <%if(history){%>
+        <%for(let i=0; i < history.length; i++){%>
+            
+            <% totalwithdraw += parseInt(history[i].amount) %>
+
+            <div class="history-display-head">
+                <div class="hdh-item">
+                    <%= history[i].type %>
+                </div>
+                <div class="hdh-item">
+                    <%= history[i].amount %>
+                </div>
+                <div class="hdh-item">
+                    <%= new Date(history[i].date).toDateString()%>
+                </div>
+            </div>
+        <%}%>
+        <%}else{%>
+            <p style="text-align: center; color: grey;">No transactions</p>
+        <%}%>
         <div class="history-total">
             <div>Total:</div>
-            <div>&pound; </div>
+            <div>&pound; <%= totalwithdraw%> </div>
         </div>
     </div>
 </div>

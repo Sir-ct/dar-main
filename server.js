@@ -89,13 +89,18 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let history
     let depositreq = await Deposits.find({status: "pending"})
     let approveddep = await Deposits.find({status: "approved"})
+    let canceleddep = await Deposits.find({status: "canceled"})
     let withdraws = await Withdraws.find()
     let refdata = await Refdata.findOne({userid: req.user._id})
     if(req.query.page == "history"){
-        history = await History.find({userid: req.user._id, type:req.query.type})
+        if(req.query.type == "all"){
+            history = await History.find({userid: req.user._id})
+        }else {
+            history = await History.find({userid: req.user._id, type:req.query.type})
+        }
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, msg: "", withdraws: withdraws, withdrawmsg: ""})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, canceleddep: canceleddep, msg: "", withdraws: withdraws, withdrawmsg: ""})
 })
 
 //post routes start here
@@ -273,7 +278,18 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     console.log(req.params, deposit, user.account)
 
-    res.redirect("/dashboard")
+    res.redirect("/dashboard?page=dar_admin_control_panel")
+})
+
+//canceling deposit request
+app.post("/canceldeposit/:id", async(req, res)=>{
+    let deposit = await Deposits.findById(req.params.id)
+
+    deposit.status = 'canceled'
+
+    await deposit.save()
+
+    res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
 //adding ballance to user account
@@ -291,6 +307,10 @@ app.post("/addballance/:id", async(req, res)=>{
     res.redirect("/dashboard")
 })
 
+//searchhistory post route
+app.post("/searchtransactions", async(req, res)=>{
+    res.redirect(`/dashboard?page=history&type=${req.body.transactiontype}`)
+})
 
 //edit profile route
 app.post("/editprofile/:id", isLoggedIn, async (req, res)=>{

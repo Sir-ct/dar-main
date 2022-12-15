@@ -13,6 +13,14 @@
                 <button type="submit" class="approve-deposit">
                     Approve
                 </button>
+
+            </form>
+
+            <form action="/canceldeposit/<%= depositreq[i].id %>" method="post">
+                <button type="submit" class="approve-deposit">
+                    cancel
+                </button>
+
             </form>
         </div>
     <%}%>
@@ -37,6 +45,21 @@
                     Add ballance
                 </button>
             </form>
+        </div>
+    <%}%>
+  
+   </div>
+
+   <h2>Canceled deposits</h2>
+
+   <div class="deposit-req-wrap">
+
+    <%for(let i = 0; i < canceleddep.length; i++){%>
+        <div class="deposit-req">
+            <div>Username: <%= canceleddep[i].user%></div>
+            <div>Plan: <%= canceleddep[i].plan%> </div>
+            <div>Currency: <%= canceleddep[i].currency%></div>
+            <div>Amount: <%= canceleddep[i].amount%></div>
         </div>
     <%}%>
   
