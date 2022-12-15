@@ -117,7 +117,7 @@
             <div class="hdh-item">Amount</div>
             <div class="hdh-item">Date</div>
         </div>
-       <%if(history){%>
+       <%if(history.length > 0){%>
         <%for(let i=0; i < history.length; i++){%>
             
             <% totalwithdraw += parseInt(history[i].amount) %>
