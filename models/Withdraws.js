@@ -13,6 +13,10 @@ let WithdrawSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: String,
+        default: ""
+    },
     time: {
         type: Date,
         default: Date.now()

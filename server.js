@@ -89,7 +89,7 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let history
     let depositreq = await Deposits.find({status: "pending"})
     let approveddep = await Deposits.find({status: "approved"})
-    let canceleddep = await Deposits.find({status: "canceled"})
+    let canceledwithdraws = await Withdraws.find({status: "canceled"})
     let withdraws = await Withdraws.find()
     let refdata = await Refdata.findOne({userid: req.user._id})
     if(req.query.page == "history"){
@@ -100,7 +100,7 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
         }
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, canceleddep: canceleddep, msg: "", withdraws: withdraws, withdrawmsg: ""})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, canceledwithdraws: canceledwithdraws, msg: "", withdraws: withdraws, withdrawmsg: ""})
 })
 
 //post routes start here
@@ -281,13 +281,17 @@ app.post("/approvedeposit/:id", async (req, res)=>{
     res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
-//canceling deposit request
-app.post("/canceldeposit/:id", async(req, res)=>{
-    let deposit = await Deposits.findById(req.params.id)
+//canceling withdrawal request
+app.post("/cancelwithdrawal/:id", async(req, res)=>{
+    let withdrawal = await Withdraws.findById(req.params.id)
+    let user = await Users.findOne({username: withdrawal.user})
 
-    deposit.status = 'canceled'
+    withdrawal.status = 'canceled'
 
-    await deposit.save()
+    user.account = {...user.account, currentballance: user.account.currentballance + withdrawal.amount, withdraws: user.account.withdraws - withdrawal.amount }
+
+    await withdrawal.save()
+    await user.save()
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
 })
