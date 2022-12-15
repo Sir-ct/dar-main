@@ -5,6 +5,10 @@ let WithdrawSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    usermail: {
+        type: String,
+        required: true
+    },
     currency:{
         type: String,
         required: true

@@ -208,6 +208,7 @@ app.post("/depositfunds", async (req, res)=>{
     console.log(req.body, typeof req.body.amount)
     let deposit = new Deposits({
         user: req.user.username,
+        usermail: req.user.email,
         plan: req.body.plan,
         currency: req.body.currency,
         amount: req.body.amount,
@@ -232,6 +233,7 @@ if(req.body.withdrawamount > user.account.currentballance){
     
     let withdrawal = new Withdraws({
         user: req.user.username,
+        usermail: req.user.email,
         amount: req.body.withdrawamount,
         currency: req.body.withdrawcurrency
     })

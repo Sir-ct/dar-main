@@ -5,6 +5,10 @@ let DepositSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    usermail: {
+        type: String,
+        required: true
+    },
     plan: {
         type: String,
         required: true

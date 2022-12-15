@@ -6,6 +6,7 @@
     <%for(let i = 0; i < depositreq.length; i++){%>
         <div class="deposit-req">
             <div>Username: <%= depositreq[i].user%></div>
+            <div>User email: <%= depositreq[i].usermail %></div>
             <div>Plan: <%= depositreq[i].plan%> </div>
             <div>Currency: <%= depositreq[i].currency%></div>
             <div>Amount: <%= depositreq[i].amount%></div>
@@ -27,6 +28,7 @@
     <%for(let i = 0; i < approvedreq.length; i++){%>
         <div class="deposit-req">
             <div>Username: <%= approvedreq[i].user%></div>
+            <div>User email: <%= approvedreq[i].usermail%></div>
             <div>Plan: <%= approvedreq[i].plan%> </div>
             <div>Currency: <%= approvedreq[i].currency%></div>
             <div>Amount: <%= approvedreq[i].amount%></div>
