@@ -46,11 +46,11 @@
 <section class="support-talk-to-us">
     <div class="talk-to-us-wrap">
         
-           <form action="/talk" class="talk-to-us">
+           <form action="/talk" method="post" class="talk-to-us">
             <h2 class="ss-title">Talk to us</h2>
             <div class="name-mail">
-                <input type="text" placeholder="Enter name">
-                <input type="email" placeholder="Enter email">
+                <input type="text" name="name" placeholder="Enter name">
+                <input type="email" name="email" placeholder="Enter email">
             </div>
             <textarea name="support" id="support" cols="30" rows="10" placeholder="Tell us a few words"></textarea>
             <button type="submit">Send a message</button>

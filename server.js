@@ -361,6 +361,11 @@ app.post("/editprofile/:id", isLoggedIn, async (req, res)=>{
         res.render("dashboard", {page: 'profile', userdetails: user, msg: msg /*refdata: refdata, history: history, type: req.query.type, depositreq: depositreq*/})
     }
 })
+//support talk to us post route
+app.post('/talk', (req, res)=>{
+    console.log(req.body)
+    res.redirect("/support")
+})
 
 //logout
 app.post("/logout", (req, res)=>{
