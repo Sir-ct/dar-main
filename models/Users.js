@@ -41,12 +41,12 @@ let UsersSchema = new mongoose.Schema({
     },
     lastLoggedIn: {
         type: Date, 
-        default: Date.now()
+        default: Date.now
     },
     timeJoined:{
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     }
 })
 
