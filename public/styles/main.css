@@ -164,10 +164,14 @@ nav{
 }
 .login-btn{
     font-weight: 700;
+    text-decoration: none;
+    color: white;
     background-color: rgb(77, 153, 184);
 }
 .signup-btn{
     font-weight: 700;
+    color: white;
+    text-decoration: none;
     background-color: rgb(122, 192, 105);
 }
 
