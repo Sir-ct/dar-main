@@ -298,6 +298,18 @@ app.post("/cancelwithdrawal/:id", async(req, res)=>{
     res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
+//clearing pending ballance
+app.post("/clearpending/:id", async(req, res)=>{
+    let withdrawal = await Withdraws.findById(req.params.id)
+    let user = await Users.findOne({username: withdrawal.user})
+
+    user.account = {...user.account, withdraws: 0}
+
+    await user.save()
+
+    res.redirect("/dashboard?page=dar_admin_control_panel")
+})
+
 //adding ballance to user account
 app.post("/addballance/:id", async(req, res)=>{
     console.log(req.body)
