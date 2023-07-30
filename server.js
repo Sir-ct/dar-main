@@ -13,6 +13,7 @@ const Refdata = require("./models/Referal")
 const History = require("./models/History")
 const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
+const ResetPassword = require("./models/Resetpassword")
 
 
 initpassport(passport)
@@ -81,13 +82,14 @@ app.get("/support", isLoggedOut, (req, res)=>{
 
 //forgot password get route
 app.get("/passwordforgot", isLoggedOut, (req, res)=>{
-    res.render("forgotpassword")
+    res.render("forgotpassword", {message: ""})
 })
 
 app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let user = await Users.findById(req.user._id)
     let history
     let depositreq = await Deposits.find({status: "pending"})
+    let changepassreq = await ResetPassword.find()
     let approveddep = await Deposits.find({status: "approved"})
     let canceledwithdraws = await Withdraws.find({status: "canceled"})
     let withdraws = await Withdraws.find()
@@ -100,7 +102,7 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
         }
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, approvedreq: approveddep, canceledwithdraws: canceledwithdraws, msg: "", withdraws: withdraws, withdrawmsg: ""})
+    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, changepassreq: changepassreq, approvedreq: approveddep, canceledwithdraws: canceledwithdraws, msg: "", withdraws: withdraws, withdrawmsg: ""})
 })
 
 //post routes start here
@@ -254,6 +256,40 @@ if(req.body.withdrawamount > user.account.currentballance){
     res.redirect("/dashboard")
    
 }
+})
+
+//forgot password post route
+app.post("/passwordforgot", async (req, res)=>{
+    console.log(req.body)
+    if(!req.body){
+        res.render('forgotpassword', {message: "Field cannot be empty"})
+    }else{
+        let user = await Users.findOne({email: req.body.email})
+        if(!user){
+            res.render('forgotpassword',{message: "This email is not a registered user"})
+            return
+        }
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash("1234", salt, async function(err, hash) {
+                await Users.findOneAndUpdate({email: req.body.email},{password: hash})
+                console.log("password changed")
+            })
+        })
+
+        let resetpassword = await new ResetPassword({
+            email: req.body.email
+        }).save()
+
+        res.render('forgotpassword', {message: 'an email would be sent to you shortly with more details'})
+
+    }
+
+})
+
+//remove password reset from admin dashboard
+app.post("/removepassreq/:id", async (req, res)=>{
+    let resetpassword = await ResetPassword.findByIdAndDelete(req.params.id)
+    res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
 //approving deposit requests

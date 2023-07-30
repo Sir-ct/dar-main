@@ -1,4 +1,21 @@
 <div class="deposit-div">
+    <h2>Reset password Request</h2>
+
+    <div class="deposit-req-wrap">
+        <%for(let i=0; i < changepassreq.length; i++){%>
+            <div class="deposit-req">
+                <div>email: <%= changepassreq[i].email %></div>
+                <div>password: 1234</div>
+                <form action="/removepassreq/<%= changepassreq[i].id %>" method="post">
+                    <button>
+                        Email Sent(clear)
+                    </button>
+                </form>
+            </div>
+        <%}%>
+    </div>
+
+
     <h2>Pending deposit requests</h2>
 
    <div class="deposit-req-wrap">
