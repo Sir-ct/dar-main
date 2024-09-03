@@ -178,7 +178,7 @@ app.post("/registerdar", async (req, res)=>{
                 await new Refdata({
                     userid: saveuser._id,
                     referrer: referrer ? referrer.username : "" ,
-                    reflink: `https://dormantaccountrefunds.org/signup?ref=${saveuser.username}`
+                    reflink: `https://${req.hostname}/signup?ref=${saveuser.username}`
                 }).save()
                 console.log(saveuser)
                 res.redirect("/login")
