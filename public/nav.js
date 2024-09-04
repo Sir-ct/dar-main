@@ -27,7 +27,7 @@ function main(){
         let randomamount = Math.floor(Math.random() * 20000) + 500
         
        popup.innerHTML = ` <ion-icon name="checkmark-circle-outline"></ion-icon> 
-        <p>An investor from ${locations[randomcountry]} ${action[randomaction]} &pound;${randomamount}</p>`
+        <p>An investor from ${locations[randomcountry]} ${action[randomaction]} &dollar;${randomamount}</p>`
         popup.style = "display: flex"
 
         setTimeout(()=>{
