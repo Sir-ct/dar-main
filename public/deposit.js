@@ -16,45 +16,67 @@ showaddress.addEventListener("click", ()=>{
   alert("text copied :" + " " + showaddress.innerText)
 })
 
+plan.addEventListener("change", ()=>{
+    switch(plan.value){
+        case 'basic':
+            amount.value = 50
+            break;
+        case 'bronze':
+            amount.value = 500
+            break;
+        case 'silver':
+            amount.value = 1000
+            break;
+        case 'gold':
+            amount.value = 2000
+            break;
+        case "diamond":
+            amount.value = 6000
+            break;
+        case "platinum":
+            amount.value = 10000
+    }
+})
+
 depositBtn.addEventListener("click", ()=>{
    // console.log("plan:" + plan.value + ", currency:" + currency.value + ", amount:" + amount.value)
 
     switch(plan.value){
         case 'basic':
             showplan.innerText = "Basic plan"
-            showamount.innerText = "500"
+            showamount.innerText = "50"
             showprofit.innerText = "50% for one month"
-            amount.value = 500
+            amount.value = amount.value > 50 ? amount.value : 50
             break;
         case 'bronze':
             showplan.innerText = "Bronze plan"
-            showamount.innerText = "1500"
+            showamount.innerText = "500"
             showprofit.innerText = "50% for one month"
-            amount.value = 1500
+            amount.value = amount.value > 500 ? amount.value : 500
             break;
         case 'silver':
             showplan.innerText = "Standard Plan"
-            showamount.innerText = "3000"
+            showamount.innerText = "1000"
             showprofit.innerText = "50% for one month"
-            amount.value = 3000
+            amount.value = amount.value > 1000 ? amount.value : 1000
             break;
         case 'gold':
             showplan.innerText = "Gold plan"
-            showamount.innerText = "5000"
+            showamount.innerText = "2000"
             showprofit.innerText = "120% for one month"
-            amount.value = 5000
+            amount.value = amount.value > 2000 ? amount.value : 2000
             break;
         case "diamond":
             showplan.innerText = "Company Shares"
             showamount.innerText = "6000"
             showprofit.innerText = "120% for one month"
-            amount.value = 6000
+            amount.value = amount.value > 6000 ? amount.value : 6000
             break;
         case "platinum":
             showplan.innerText = "Real Estate"
             showamount.innerText = "10000"
             showprofit.innerText = "120% for one month"
-            amount.value = 10000
+            amount.value = amount.value > 10000 ? amount.value : 10000
     }
 
     switch(currency.value){
