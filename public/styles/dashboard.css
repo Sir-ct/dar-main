@@ -219,6 +219,9 @@ body{
 .dd-name{
     font-weight: bold;
 }
+.cpy-text{
+    background-color: rgb(204, 194, 194);
+}
 .submit-div button, .submit-div a, .submit-history-search, .approve-deposit{
     text-decoration: none;
     color: white;

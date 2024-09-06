@@ -10,6 +10,12 @@ let showaddress = document.getElementById("deposit-addr")
 let showamount = document.getElementById("amount-span")
 let showprofit = document.getElementById("profit-span")
 
+showaddress.addEventListener("click", ()=>{
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(showaddress.innerText);
+  alert("text copied :" + " " + showaddress.innerText)
+})
+
 depositBtn.addEventListener("click", ()=>{
    // console.log("plan:" + plan.value + ", currency:" + currency.value + ", amount:" + amount.value)
 
@@ -27,7 +33,7 @@ depositBtn.addEventListener("click", ()=>{
             amount.value = 1500
             break;
         case 'silver':
-            showplan.innerText = "Silver plan"
+            showplan.innerText = "Standard Plan"
             showamount.innerText = "3000"
             showprofit.innerText = "50% for one month"
             amount.value = 3000
@@ -39,13 +45,13 @@ depositBtn.addEventListener("click", ()=>{
             amount.value = 5000
             break;
         case "diamond":
-            showplan.innerText = "Diamond plan"
+            showplan.innerText = "Company Shares"
             showamount.innerText = "6000"
             showprofit.innerText = "120% for one month"
             amount.value = 6000
             break;
         case "platinum":
-            showplan.innerText = "Platinum plan"
+            showplan.innerText = "Real Estate"
             showamount.innerText = "10000"
             showprofit.innerText = "120% for one month"
             amount.value = 10000
@@ -53,13 +59,13 @@ depositBtn.addEventListener("click", ()=>{
 
     switch(currency.value){
         case 'bitcoin':
-            showaddress.innerText = "bc1qxk95d3gsy6y72utz3ueqt2zclt5jn85d69tr3t" //"bc1qra0srskmzl068c7nvvj62duxz0edrwfjm0lff2"
+            showaddress.innerText = "bc1qrknpq0y46s34w680d2u7mrg3l06j7xev9q302g" //"bc1qra0srskmzl068c7nvvj62duxz0edrwfjm0lff2"
             break;
         case 'ethereum':
-            showaddress.innerText = "0x98f17aD4e86062F1CCB4D4689aE2b6871BaF40A9" //"0x6CfdE2789b594492C51eE7F8832aE7A0C81fB524" //
+            showaddress.innerText = "0x86369F349b77b08BAd5Edf95A87959e603D8377B" //"0x6CfdE2789b594492C51eE7F8832aE7A0C81fB524" //
             break;
         case 'trc':
-            showaddress.innerHTML = "TBmNoQAoZCL1iVZWAzSkeknMGGyginPeQP" //"TYjfNUX8qVmp7qCvsEFPPmhDGua9pCatdX" //
+            showaddress.innerText = "TV1peHCMg6E8pywkTCAhePSNRNymuWWPee" //"TYjfNUX8qVmp7qCvsEFPPmhDGua9pCatdX" //
     }
 
    for(let i = 0; i < depositDivs.length; i++){
