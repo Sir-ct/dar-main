@@ -1,7 +1,29 @@
 <div class="deposit-div">
-    <h2>Reset password Request</h2>
+    <h4 id="auh">All Users <ion-icon name="chevron-down-outline"></ion-icon></h4>
 
     <div class="deposit-req-wrap">
+    <table id="aut" style="width: 100%; text-align: center;" class="hidden">
+            <tr>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Last logged in</th>
+            </tr>
+            <%for(let i=0; i < allUsers.length; i++) {%>
+                <tr>
+                    <td><%= allUsers[i].fullname %></td>
+                    <td><%= allUsers[i].username %></td>
+                    <td><%= allUsers[i].email %></td>
+                    <td><%= new Date(allUsers[i].lastLoggedIn).toLocaleString() %></td>
+                </tr>
+            <%}%>
+        </table>
+    </div>
+
+
+    <h4 id="rph">Reset password Request <ion-icon name="chevron-down-outline"></ion-icon></h4>
+
+    <div id="rpb" class="deposit-req-wrap hidden">
         <%for(let i=0; i < changepassreq.length; i++){%>
             <div class="deposit-req">
                 <div>email: <%= changepassreq[i].email %></div>
@@ -16,84 +38,114 @@
     </div>
 
 
-    <h2>Pending deposit requests</h2>
+    <h4 id="pdrh">Pending deposit requests <ion-icon name="chevron-down-outline"></ion-icon></h4>
 
-   <div class="deposit-req-wrap">
+   <div class="deposit-req-wrap hidden">
 
-    <%for(let i = 0; i < depositreq.length; i++){%>
-        <div class="deposit-req">
-            <div>Username: <%= depositreq[i].user%></div>
-            <div>User email: <%= depositreq[i].usermail %></div>
-            <div>Plan: <%= depositreq[i].plan%> </div>
-            <div>Currency: <%= depositreq[i].currency%></div>
-            <div>Amount: <%= depositreq[i].amount%></div>
-            <form action="/approvedeposit/<%= depositreq[i].id %>" method="post">
-                <button type="submit" class="approve-deposit">
-                    Approve
-                </button>
-
-            </form>
-        </div>
-    <%}%>
+       <table id="pdrt" style="width: 100%; text-align: center;" class="hidden">
+           <tr>
+               <th>Username</th>
+               <th>User email</th>
+               <th>Plan</th>
+               <th>Currency</th>
+               <th>Amount</th>
+           </tr>
+           
+           <%for(let i = 0; i < depositreq.length; i++){%>
+               <tr>
+                   <td><%= depositreq[i].user%></td>
+                   <td><%= depositreq[i].usermail %></td>
+                   <td><%= depositreq[i].plan%> </td>
+                   <td><%= depositreq[i].currency%></td>
+                   <td><%= depositreq[i].amount%></td>
+                   <td>
+                       <form action="/approvedeposit/<%= depositreq[i].id %>" method="post">
+                           <button type="submit" class="approve-deposit">
+                               Approve
+                           </button>
+                       </form>
+                   </td>
+                </tr>
+           <%}%>
+       </table>
   
    </div>
 
-   <h2>Approved deposits</h2>
+   <h4 id="adh">Approved deposits <ion-icon name="chevron-down-outline"></ion-icon></h4>
 
-   <div class="deposit-req-wrap">
-
-    <%for(let i = 0; i < approvedreq.length; i++){%>
-        <div class="deposit-req">
-            <div>Username: <%= approvedreq[i].user%></div>
-            <div>User email: <%= approvedreq[i].usermail%></div>
-            <div>Plan: <%= approvedreq[i].plan%> </div>
-            <div>Currency: <%= approvedreq[i].currency%></div>
-            <div>Amount: <%= approvedreq[i].amount%></div>
-            <hr />
-            <form action="/addballance/<%= approvedreq[i].id %>" method="post">
-                <div>Update user ballance</div>
-                <input type="number" name="newbal">
-                <button type="submit" class="approve-deposit">
-                    Add ballance
-                </button>
-            </form>
-        </div>
-    <%}%>
+   <div class="deposit-req-wrap hidden">
+    <table id="adt" style="width: 100%; text-align: center;" class="hidden" >
+        <tr>
+            <th>Username</th>
+            <th>User email</th>
+            <th>Plan</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Update user balance</th>
+        </tr>
+        <%for(let i = 0; i < approvedreq.length; i++){%>
+            <tr>
+                <td><%= approvedreq[i].user%></td>
+                <td><%= approvedreq[i].usermail%></td>
+                <td><%= approvedreq[i].plan%> </td>
+                <td><%= approvedreq[i].currency%></td>
+                <td><%= approvedreq[i].amount%></td>
+                <td>
+                    <form action="/addballance/<%= approvedreq[i].id %>" method="post">
+                        <input type="number" name="newbal">
+                        <button type="submit" class="approve-deposit">
+                            Add ballance
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <%}%>
+    </table>
   
    </div>
 
-   <h2>Withdrawals</h2>
+   <h4 id="wh">Withdrawals <ion-icon name="chevron-down-outline"></ion-icon></h4>
 
-   <div class="deposit-req-wrap">
-
-    <%for(let i = 0; i < withdraws.length; i++){%>
-        <div class="deposit-req">
-            <div>Username: <%= withdraws[i].user%></div>
-            <div>Currency: <%= withdraws[i].currency%></div>
-            <div>Amount: <%= withdraws[i].amount%></div>
-
-            <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
-                <button type="submit" class="approve-deposit">
-                    cancel
-                </button>
+   <div class="deposit-req-wrap hidden">
+    <table id="wt" style="width: 100%; text-align: center;" class="hidden">
+        <tr>
+            <th>Username</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        <%for(let i = 0; i < withdraws.length; i++){%>
+            <tr>
+                <td>Username: <%= withdraws[i].user%></td>
+                <td>Currency: <%= withdraws[i].currency%></td>
+                <td>Amount: <%= withdraws[i].amount%></td>
+                <td>
+                    <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
+                        <button type="submit" class="approve-deposit">
+                            cancel
+                        </button>
+            
+                    </form>
+                </td>
+                <td>
+                    <form action="/clearpending/<%= withdraws[i].id %>" method="post">
+                        <button type="submit" class="approve-deposit">
+                            clear pending
+                        </button>
+            
+                    </form>
+                </td>
     
-            </form>
-
-            <form action="/clearpending/<%= withdraws[i].id %>" method="post">
-                <button type="submit" class="approve-deposit">
-                    clear pending
-                </button>
+            </tr>
     
-            </form>
-        </div>
-
-    <%}%>
+        <%}%>
+    </table>
   
    </div>
 
-   <h2>Canceled withdrawals</h2>
+   <h4 id="cwh">Canceled withdrawals <ion-icon name="chevron-down-outline"></ion-icon></h4>
 
-   <div class="deposit-req-wrap">
+   <div id="cwb" class="deposit-req-wrap hidden">
 
     <%for(let i = 0; i < canceledwithdraws.length; i++){%>
         <div class="deposit-req">
@@ -106,3 +158,5 @@
    </div>
 
 </div>
+
+<script src="/adminpanel.js"></script>

@@ -6,6 +6,10 @@ body{
 .hidden{
     display: none;
 }
+td, th{
+    border: 1px solid black;
+    margin: 0;
+}
 .dash-wrap{
     display: flex;
     max-height: 100vh;
@@ -339,6 +343,7 @@ body{
 .deposit-req-wrap{
     display: flex;
     flex-wrap: wrap;
+    overflow: scroll;
     justify-content: space-between;
 }
 .deposit-req{

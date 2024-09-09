@@ -87,6 +87,7 @@ app.get("/passwordforgot", isLoggedOut, (req, res)=>{
 
 app.get("/dashboard", isLoggedIn, async (req, res)=>{
     let user = await Users.findById(req.user._id)
+    let allUsers = await Users.find()
     let history
     let depositreq = await Deposits.find({status: "pending"})
     let changepassreq = await ResetPassword.find()
@@ -102,7 +103,23 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
         }
 
     }
-    res.render("dashboard", {page: req.query.page, userdetails: user, refdata: refdata, history: history, type: req.query.type, depositreq: depositreq, changepassreq: changepassreq, approvedreq: approveddep, canceledwithdraws: canceledwithdraws, msg: "", withdraws: withdraws, withdrawmsg: ""})
+    res.render("dashboard",
+        {
+            page: req.query.page,
+            allUsers, 
+            userdetails: user, 
+            refdata: refdata, 
+            history: history, 
+            type: req.query.type, 
+            depositreq: depositreq, 
+            changepassreq: changepassreq, 
+            approvedreq: approveddep, 
+            canceledwithdraws: canceledwithdraws, 
+            msg: "", 
+            withdraws: withdraws, 
+            withdrawmsg: ""
+        }
+    )
 })
 
 //post routes start here
