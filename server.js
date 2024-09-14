@@ -14,6 +14,7 @@ const History = require("./models/History")
 const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
 const ResetPassword = require("./models/Resetpassword")
+const sendMail = require("./utils/mail")
 
 
 initpassport(passport)
@@ -438,6 +439,5 @@ app.post("/logout", (req, res)=>{
         res.redirect("/")
     })
 })
-
 
 app.listen(port, ()=>{console.log(`app listening on port ${port}`)})
