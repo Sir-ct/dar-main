@@ -1,6 +1,6 @@
-import {v4 as uuidv4 } from "uuid"
+const {v4: uuidv4} = require("uuid")
 
-export const welcomeMail = (username)=>{
+const welcomeMail = (username)=>{
     let content = 
     `<div>
         <p> 
@@ -17,7 +17,7 @@ export const welcomeMail = (username)=>{
     return content
 }
 
-export const depositMail = (username, amount)=>{
+const depositMail = (username, amount)=>{
     let content = 
     `<div>
         <p> 
@@ -34,7 +34,7 @@ export const depositMail = (username, amount)=>{
     return content
 }
 
-export const withdrawMail = (username, amount)=>{
+const withdrawMail = (username, amount)=>{
     let content = 
     `<div>
         <p> 
@@ -50,3 +50,5 @@ export const withdrawMail = (username, amount)=>{
 
     return content
 }
+
+module.exports = { welcomeMail, depositMail, withdrawMail }

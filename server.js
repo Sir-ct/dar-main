@@ -15,7 +15,7 @@ const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
 const ResetPassword = require("./models/Resetpassword")
 const {sendMail} = require("./utils/mail")
-const { welcomeMail } = require("./utils/mailTemplates")
+const { welcomeMail, depositMail } = require("./utils/mailTemplates")
 
 
 initpassport(passport)
@@ -338,6 +338,8 @@ app.post("/approvedeposit/:id", async (req, res)=>{
     console.log(req.params, deposit, user.account)
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
+    let mailBody = depositMail(user.username, deposit.amount)
+    sendMail(user.email, "Deposit Successful", mailBody)
 })
 
 //canceling withdrawal request
