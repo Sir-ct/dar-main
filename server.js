@@ -14,7 +14,8 @@ const History = require("./models/History")
 const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
 const ResetPassword = require("./models/Resetpassword")
-const sendMail = require("./utils/mail")
+const {sendMail} = require("./utils/mail")
+const { welcomeMail } = require("./utils/mailTemplates")
 
 
 initpassport(passport)
@@ -200,6 +201,8 @@ app.post("/registerdar", async (req, res)=>{
                 }).save()
                 console.log(saveuser)
                 res.redirect("/login")
+                const mailBody = welcomeMail(req.body.username)
+                sendMail(req.body.email, "Account Registeration Successfull", mailBody)
             });
         });
      

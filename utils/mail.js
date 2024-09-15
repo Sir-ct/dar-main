@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer")
 
-async function sendMail(recipient, subject, html){
+async function sendMail(recipient, subject, text){
     const transporter = nodemailer.createTransport({
-        host: "smtp.zoho.com",
+        host: process.env.SMTP_HOST,
         port: 465,
         secure: true, // true for port 465, false for other ports
         auth: {
             user: "support@dormantrefunds.org",
-            pass: "Dormantrefunds@1",
+            pass: process.env.MAIL_PASS,
         },
     })
 
@@ -15,11 +15,11 @@ async function sendMail(recipient, subject, html){
         from: '"Alice" <support@dormantrefunds.org>', // sender address
         to: recipient, // list of receivers
         subject: subject, // Subject line
-        //text: "Hello world?", // plain text body
-        html: html,
+        text: text, // plain text body
+        //html: html,
     })
 
     console.log("after sending mail", info)
 }
 
-export default sendMail;
+export {sendMail};
