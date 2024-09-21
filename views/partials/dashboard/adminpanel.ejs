@@ -49,6 +49,7 @@
                <th>Plan</th>
                <th>Currency</th>
                <th>Amount</th>
+               <th>Time</th>
            </tr>
            
            <%for(let i = 0; i < depositreq.length; i++){%>
@@ -58,6 +59,7 @@
                    <td><%= depositreq[i].plan%> </td>
                    <td><%= depositreq[i].currency%></td>
                    <td><%= depositreq[i].amount%></td>
+                   <td><%= depositreq[i].time.toLocaleString() %></td>
                    <td>
                        <form action="/approvedeposit/<%= depositreq[i].id %>" method="post">
                            <button type="submit" class="approve-deposit">
@@ -81,6 +83,7 @@
             <th>Plan</th>
             <th>Currency</th>
             <th>Amount</th>
+            <th>Time</th>
             <th>Update user balance</th>
         </tr>
         <%for(let i = 0; i < approvedreq.length; i++){%>
@@ -90,6 +93,7 @@
                 <td><%= approvedreq[i].plan%> </td>
                 <td><%= approvedreq[i].currency%></td>
                 <td><%= approvedreq[i].amount%></td>
+                <td><%= approvedreq[i].time.toLocaleString() %></td>
                 <td>
                     <form action="/addballance/<%= approvedreq[i].id %>" method="post">
                         <input type="number" name="newbal">
@@ -112,13 +116,15 @@
             <th>Username</th>
             <th>Currency</th>
             <th>Amount</th>
+            <th>Time</th>
             <th>Action</th>
         </tr>
         <%for(let i = 0; i < withdraws.length; i++){%>
             <tr>
-                <td>Username: <%= withdraws[i].user%></td>
-                <td>Currency: <%= withdraws[i].currency%></td>
-                <td>Amount: <%= withdraws[i].amount%></td>
+                <td><%= withdraws[i].user%></td>
+                <td><%= withdraws[i].currency%></td>
+                <td><%= withdraws[i].amount%></td>
+                <td><%= withdraws[i].time.toLocaleString() %></td>
                 <td>
                     <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
                         <button type="submit" class="approve-deposit">
