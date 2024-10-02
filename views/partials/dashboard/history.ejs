@@ -113,7 +113,11 @@
 
     <div class="history-items">
         <div class="history-display-head">
-            <div class="hdh-item">Type</div>
+            <%if(type === "deposit"){%>
+                <div class="hdh-item">Status</div>
+            <%} else {%>
+                <div class="hdh-item">Type</div>
+            <%}%>
             <div class="hdh-item">Amount</div>
             <div class="hdh-item">Date</div>
         </div>
@@ -123,15 +127,27 @@
             <% totalwithdraw += parseInt(history[i].amount) %>
 
             <div class="history-display-head">
-                <div class="hdh-item">
-                    <%= history[i].type %>
-                </div>
+                <%if(type === "deposit"){%>
+                    <div class="hdh-item">
+                        <%= history[i].status %>
+                    </div>
+                <%}else{%>
+                    <div class="hdh-item">
+                        <%= history[i].type %>
+                    </div>
+                <%}%>
                 <div class="hdh-item">
                     <%= history[i].amount %>
                 </div>
-                <div class="hdh-item">
-                    <%= new Date(history[i].date).toDateString()%>
-                </div>
+                <%if(type==="deposit"){%>
+                    <div class="hdh-item">
+                        <%= new Date(history[i].time).toDateString()%>
+                    </div>
+                <%}else{%>
+                    <div class="hdh-item">
+                        <%= new Date(history[i].date).toDateString()%>
+                    </div>
+                <%}%>
             </div>
         <%}%>
         <%}else{%>

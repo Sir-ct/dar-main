@@ -101,7 +101,11 @@ app.get("/dashboard", isLoggedIn, async (req, res)=>{
         if(req.query.type == "all"){
             history = await History.find({userid: req.user._id})
         }else {
-            history = await History.find({userid: req.user._id, type:req.query.type})
+            if(req.query.type === "deposit"){
+                history = await Deposits.find({user: req.user.username})
+            }else{
+                history = await History.find({userid: req.user._id, type:req.query.type})
+            }
         }
 
     }

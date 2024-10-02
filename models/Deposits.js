@@ -27,7 +27,7 @@ let DepositSchema = new mongoose.Schema({
     },
     time: {
         type: Date,
-        default: Date.now()
+        default: new Date()
     }
 })
 
