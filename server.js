@@ -15,7 +15,7 @@ const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
 const ResetPassword = require("./models/Resetpassword")
 const {sendMail} = require("./utils/mail")
-const { welcomeMail, depositMail } = require("./utils/mailTemplates")
+const { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail } = require("./utils/mailTemplates")
 
 
 initpassport(passport)
@@ -261,6 +261,7 @@ if(req.body.withdrawamount > user.account.currentballance){
     let withdrawal = new Withdraws({
         user: req.user.username,
         usermail: req.user.email,
+        status: "pending",
         amount: req.body.withdrawamount,
         currency: req.body.withdrawcurrency
     })
@@ -276,7 +277,6 @@ if(req.body.withdrawamount > user.account.currentballance){
 
     withdrawal = await withdrawal.save()
     addhistory = await addhistory.save()
-    user = await user.save()
 
     res.redirect("/dashboard")
    
@@ -317,6 +317,24 @@ app.post("/removepassreq/:id", async (req, res)=>{
     res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
+//approving withdraw
+app.post("/approvewithdraw/:id", async (req, res)=>{
+    let withdraw = await Withdraws.findById(req.params.id)
+    let user = await Users.findOne({username: withdraw.user})
+
+    user.account = {...user.account, withdraws: user.account.withdraws + req.body.withdrawamount, activedeposits: 0, currentballance: user.account.currentballance - req.body.withdrawamount}
+
+    withdraw.status = 'approved'
+
+    user = await user.save()
+    await withdraw.save()
+
+    res.redirect("/dashboard?page=dar_admin_control_panel")
+    let mailBody = withdrawMail(user.username, withdraw.amount)
+    sendMail(user.email, "Withdrawal Approved", mailBody)
+    
+})
+
 //approving deposit requests
 app.post("/approvedeposit/:id", async (req, res)=>{
     console.log(req.body)
@@ -343,7 +361,7 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
     let mailBody = depositMail(user.username, deposit.amount)
-    sendMail(user.email, "Deposit Successful", mailBody)
+    sendMail(user.email, "Deposit Approved", mailBody)
 })
 
 //canceling withdrawal request
@@ -359,6 +377,8 @@ app.post("/cancelwithdrawal/:id", async(req, res)=>{
     await user.save()
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
+    let mailBody = cancelWithdrawMail(user.username, withdrawal.amount)
+    sendMail(user.email, "Withdrawal Canceled", mailBody)
 })
 
 //clearing pending ballance

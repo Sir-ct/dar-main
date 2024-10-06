@@ -4,8 +4,8 @@ const baseTemplate = (dynamicMessage)=>{
     let content =
     `<div style="font-family: sans-serif; border: 1px solid #CCC;">
         <div style="display: flex; align-items: center; gap: 10px; padding: 15px; background-color: #EEE;">
-            <div style="width: 50px; height: 50px;">
-                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1170.000000 1119.000000" preserveAspectRatio="xMidYMid meet">
+            <div>
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40" height="40px" viewBox="0 0 1170.000000 1119.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,1119.000000) scale(0.100000,-0.100000)"
                 fill="rgb(95, 194, 95)" stroke="none">
                 <path d="M0 8708 l0 -2483 122 7 c68 3 224 7 348 8 258 2 395 11 409 25 19 19
@@ -188,13 +188,13 @@ const depositMail = (username, amount)=>{
 }
 
 const withdrawMail = (username, amount)=>{
-    let content = depositMail( `<div>
+    let content = baseTemplate( `<div>
         <p> 
             Hello ${username},
             <br />
             Dormantrefunds, 
             <br />
-            $${amount}, has been transferred to your wallet address, withdrawal id is ${uuidv4()}
+            Your withdrawal of $${amount}, has been approved and transferred to your wallet address, withdrawal id is ${uuidv4()}
             <br />
             You can contact us on support@dormantrefunds.org for further questions and assistance.
         <p>
@@ -204,4 +204,20 @@ const withdrawMail = (username, amount)=>{
     return content
 }
 
-module.exports = { welcomeMail, depositMail, withdrawMail }
+const cancelWithdrawMail = (username, amount)=>{
+    let content = baseTemplate( `<div>
+        <p> 
+            Hello ${username},
+            <br />
+            Dormantrefunds, 
+            <br />
+            Your withdrawal of $${amount}, was canceled.
+            <br />
+            You can contact us on support@dormantrefunds.org for further questions and assistance.
+        <p>
+    </div>`)
+
+    return content
+}
+
+module.exports = { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail }

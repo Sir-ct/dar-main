@@ -126,11 +126,17 @@
                 <td><%= withdraws[i].amount%></td>
                 <td><%= withdraws[i].time.toLocaleString() %></td>
                 <td>
+                    <% if(withdraws[i].status === "pending") {%>
+                        <form action="/approvewithdraw/<%= withdraws[i].id %>" method="post">
+                            <button type="submit" class="approve-deposit">
+                                approve
+                            </button>
+                        </form>
+                    <%}%>
                     <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
                         <button type="submit" class="approve-deposit">
                             cancel
                         </button>
-            
                     </form>
                 </td>
                 <td>
