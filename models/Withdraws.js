@@ -17,6 +17,10 @@ let WithdrawSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    wallet: {
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         default: ""

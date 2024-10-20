@@ -252,18 +252,30 @@ app.post("/withdrawfunds", isLoggedIn, async(req, res)=>{
  req.body.withdrawamount = parseInt(req.body.withdrawamount)
 
  let user = await Users.findOne({username: req.user.username})
- console.log(req.body)
+ console.log(req.body, user.account)
 
 if(req.body.withdrawamount > user.account.currentballance){
     res.redirect("/dashboard")
 }else{
+
+    let withdrawalWallet = req.body.withdrawcurrency === "Bitcoin" 
+                            ? 
+                            user.bitcoinaddress 
+                            : 
+                            req.body.withdrawcurrency === "Ethereum"
+                            ?
+                            user.ethereumaddress
+                            :
+                            user.trc20address
+
     
     let withdrawal = new Withdraws({
         user: req.user.username,
         usermail: req.user.email,
         status: "pending",
         amount: req.body.withdrawamount,
-        currency: req.body.withdrawcurrency
+        currency: req.body.withdrawcurrency,
+        wallet: withdrawalWallet
     })
 
     let addhistory = new History({
@@ -322,7 +334,14 @@ app.post("/approvewithdraw/:id", async (req, res)=>{
     let withdraw = await Withdraws.findById(req.params.id)
     let user = await Users.findOne({username: withdraw.user})
 
-    user.account = {...user.account, withdraws: user.account.withdraws + req.body.withdrawamount, activedeposits: 0, currentballance: user.account.currentballance - req.body.withdrawamount}
+    console.log("currenet total withdraws", user.account.withdraws, "withdraw amount: ", withdraw.amount)
+
+    user.account = {
+        ...user.account, 
+        withdraws: typeof user.account.withdraws === "number" && user.account.withdraws !== NaN ? user.account.withdraws  + withdraw.amount : withdraw.amount, 
+        activedeposits: 0, 
+        currentballance: typeof user.account.currentballance === "number" ? user.account.currentballance - withdraw.amount : withdraw.amount
+    }
 
     withdraw.status = 'approved'
 
@@ -341,7 +360,14 @@ app.post("/approvedeposit/:id", async (req, res)=>{
     let deposit = await Deposits.findById(req.params.id)
     let user = await Users.findOne({username: deposit.user})
 
-    user.account = {...user.account, activedeposits: user.account.deposits + deposit.amount, deposits: user.account.deposits + deposit.amount}
+    if(deposit.status === 'approved') return 
+
+    user.account = {
+        ...user.account, 
+        activedeposits: user.account.deposits + deposit.amount, 
+        deposits: user.account.deposits + deposit.amount,
+        currentballance: user.account.currentballance + deposit.amount
+    }
 
 
     deposit.status = 'approved'
@@ -361,7 +387,11 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
     let mailBody = depositMail(user.username, deposit.amount)
-    sendMail(user.email, "Deposit Approved", mailBody)
+    try{ 
+        sendMail(user.email, "Deposit Approved", mailBody)
+    }catch(e){
+        throw new Error(e.message)
+    }
 })
 
 //canceling withdrawal request

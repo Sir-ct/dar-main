@@ -67,7 +67,7 @@
   <div class="withdraw-card hidden">
       <form action="/withdrawfunds" method="post">
           <p>Amount</p>
-          <input type="number" placeholder="Select amount" name="withdrawamount" value="500" />
+          <input type="number" placeholder="Select amount" name="withdrawamount" value="500" max="<%= userdetails.account.currentballance %>" />
           <p>Currency</p>
           <select  name="withdrawcurrency">
               <% if(userdetails.bitcoinaddress){%>

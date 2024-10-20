@@ -118,6 +118,8 @@
             <th>Amount</th>
             <th>Time</th>
             <th>Action</th>
+            <th></th>
+            <th>withdraw address</th>
         </tr>
         <%for(let i = 0; i < withdraws.length; i++){%>
             <tr>
@@ -132,22 +134,23 @@
                                 approve
                             </button>
                         </form>
-                    <%}%>
-                    <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
-                        <button type="submit" class="approve-deposit">
-                            cancel
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/clearpending/<%= withdraws[i].id %>" method="post">
-                        <button type="submit" class="approve-deposit">
-                            clear pending
-                        </button>
-            
-                    </form>
-                </td>
-    
+                        <%}%>
+                        <form action="/cancelwithdrawal/<%= withdraws[i].id %>" method="post">
+                            <button type="submit" class="approve-deposit">
+                                cancel
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/clearpending/<%= withdraws[i].id %>" method="post">
+                            <button type="submit" class="approve-deposit">
+                                clear pending
+                            </button>
+                            
+                        </form>
+                    </td>
+                    <td><%= withdraws[i].wallet %></td>
+                    
             </tr>
     
         <%}%>
