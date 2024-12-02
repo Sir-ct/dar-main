@@ -220,4 +220,21 @@ const cancelWithdrawMail = (username, amount)=>{
     return content
 }
 
-module.exports = { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail }
+const resetPasswordMail = (username)=>{
+    let content = baseTemplate( `<div>
+        <p> 
+            Hello ${username},
+            <br />
+            Dormantrefunds, 
+            <br />
+            Your request to change your password was successfull. Your password has been reset to <bold>1234</bold>
+            <br />
+            Please login and make sure to change your password to a more secure one.
+            <br />
+            You can contact us on support@dormantrefunds.org for further questions and assistance.
+        <p>
+    </div>`)
+
+    return content
+}
+module.exports = { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail, resetPasswordMail }

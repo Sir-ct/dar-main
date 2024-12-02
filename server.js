@@ -15,7 +15,7 @@ const Deposits = require("./models/Deposits")
 const Withdraws = require("./models/Withdraws")
 const ResetPassword = require("./models/Resetpassword")
 const {sendMail} = require("./utils/mail")
-const { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail } = require("./utils/mailTemplates")
+const { welcomeMail, depositMail, withdrawMail, cancelWithdrawMail, resetPasswordMail } = require("./utils/mailTemplates")
 
 
 initpassport(passport)
@@ -309,6 +309,8 @@ app.post("/passwordforgot", async (req, res)=>{
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash("1234", salt, async function(err, hash) {
                 await Users.findOneAndUpdate({email: req.body.email},{password: hash})
+                let resetPassMail = resetPasswordMail(user.username)
+                sendMail(req.body.email, "Reset Password Successful", resetPassMail)
                 console.log("password changed")
             })
         })
