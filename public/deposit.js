@@ -44,37 +44,37 @@ depositBtn.addEventListener("click", ()=>{
     switch(plan.value){
         case 'basic':
             showplan.innerText = "Basic plan"
-            showamount.innerText = "50"
+            showamount.innerText = amount.value > 50 ? amount.value.toString() : "50"
             showprofit.innerText = "50% for one month"
             amount.value = amount.value > 50 ? amount.value : 50
             break;
         case 'bronze':
             showplan.innerText = "Bronze plan"
-            showamount.innerText = "500"
+            showamount.innerText = amount.value > 500 ? amount.value.toString() : "500"
             showprofit.innerText = "50% for one month"
             amount.value = amount.value > 500 ? amount.value : 500
             break;
         case 'silver':
             showplan.innerText = "Standard Plan"
-            showamount.innerText = "1000"
+            showamount.innerText = amount.value > 1000 ? amount.value.toString() : "1000"
             showprofit.innerText = "50% for one month"
             amount.value = amount.value > 1000 ? amount.value : 1000
             break;
         case 'gold':
             showplan.innerText = "Gold plan"
-            showamount.innerText = "2000"
+            showamount.innerText = amount.value > 2000 ? amount.value.toString() : "2000"
             showprofit.innerText = "120% for one month"
             amount.value = amount.value > 2000 ? amount.value : 2000
             break;
         case "diamond":
             showplan.innerText = "Company Shares"
-            showamount.innerText = "6000"
+            showamount.innerText = amount.value > 6000 ? amount.value.toString() : "6000"
             showprofit.innerText = "120% for one month"
             amount.value = amount.value > 6000 ? amount.value : 6000
             break;
         case "platinum":
             showplan.innerText = "Real Estate"
-            showamount.innerText = "10000"
+            showamount.innerText = amount.value > 10000 ? amount.value.toString() : "10000"
             showprofit.innerText = "120% for one month"
             amount.value = amount.value > 10000 ? amount.value : 10000
     }
