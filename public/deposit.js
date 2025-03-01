@@ -51,7 +51,7 @@ depositBtn.addEventListener("click", ()=>{
         case 'bronze':
             showplan.innerText = "Bronze plan"
             showamount.innerText = amount.value > 500 ? amount.value.toString() : "500"
-            showprofit.innerText = "35% for 48"
+            showprofit.innerText = "35% for 48 hours"
             amount.value = amount.value > 500 ? amount.value : 500
             break;
         case 'silver':
