@@ -28,7 +28,6 @@ app.use(express.json())
 app.use(flash())
 app.use(session({
     cookie:{
-        secure: true,
         maxAge:6000000
     },
     store: new MemoryStore({
@@ -36,7 +35,7 @@ app.use(session({
     }),
     secret: process.env.SESSION_KEY || "hidelater", //hide this later
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
   }))
   app.use(passport.initialize())
   app.use(passport.session())
