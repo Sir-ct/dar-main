@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 const passport = require("passport")
 const session = require("express-session")
+const MemoryStore = require("memorystore")(session)
 const flash = require("express-flash")
 const initpassport = require("./config/passportconfig")
 const {isLoggedIn, isLoggedOut} = require("./config/auth")
@@ -27,9 +28,12 @@ app.use(express.json())
 app.use(flash())
 app.use(session({
     cookie:{
-    secure: true,
-    maxAge:6000000
-       },
+        secure: true,
+        maxAge:6000000
+    },
+    store: new MemoryStore({
+        checkPeriod: 86400000
+    }),
     secret: process.env.SESSION_KEY || "hidelater", //hide this later
     resave: false,
     saveUninitialized: true
