@@ -22,13 +22,14 @@ initpassport(passport)
 
 const app = express()
 
+app.set("trust proxy", 1)
 
 app.use(express.static("./public"))
 app.use(express.json())
 app.use(flash())
 app.use(session({
     cookie:{
-    secure: false,
+    secure: true,
     maxAge:6000000
        },
     secret: process.env.SESSION_KEY || "hidelater", //hide this later
