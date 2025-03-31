@@ -22,8 +22,6 @@ initpassport(passport)
 
 const app = express()
 
-app.set("trust proxy", 1)
-
 app.use(express.static("./public"))
 app.use(express.json())
 app.use(flash())
@@ -42,6 +40,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.set('view engine', 'ejs')
 
+mongoose.set('strictQuery', false)
 mongoose.connect(process.env.DB || "mongodb://localhost/dar")
 
 const port = process.env.PORT || 3000
