@@ -34,7 +34,7 @@ app.use(session({
        },
     secret: process.env.SESSION_KEY || "hidelater", //hide this later
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
   }))
   app.use(passport.initialize())
   app.use(passport.session())
