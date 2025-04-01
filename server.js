@@ -76,7 +76,7 @@ app.get("/login", isLoggedOut, (req, res)=>{
 //register get route
 app.get("/signup", isLoggedOut, async (req, res)=>{
     let upline = await Users.findOne({username: req.query.ref})
-    console.log(upline)
+    console.log("upline:", upline)
     res.render("register", {msg: "", referrer: upline ? upline.username : ""})
 })
 
@@ -198,7 +198,7 @@ app.post("/registerdar", async (req, res)=>{
                     addhistory = await addhistory.save()
 
                     
-                    console.log(referrerdata.yourrefs, upline)
+                    console.log("refer data:", referrerdata.yourrefs, upline)
                 }
 
                 await new Refdata({
@@ -206,7 +206,7 @@ app.post("/registerdar", async (req, res)=>{
                     referrer: referrer ? referrer.username : "" ,
                     reflink: `https://${req.hostname}/signup?ref=${saveuser.username}`
                 }).save()
-                console.log(saveuser)
+                console.log("saveuser", saveuser)
                 res.redirect("/login")
                 const mailBody = welcomeMail(req.body.username)
                 sendMail(req.body.email, "Account Registeration Successfull", mailBody)
@@ -300,7 +300,7 @@ if(req.body.withdrawamount > user.account.currentballance){
 
 //forgot password post route
 app.post("/passwordforgot", async (req, res)=>{
-    console.log(req.body)
+    console.log("forgot pasword req body", req.body)
     if(!req.body){
         res.render('forgotpassword', {message: "Field cannot be empty"})
     }else{
@@ -361,7 +361,7 @@ app.post("/approvewithdraw/:id", async (req, res)=>{
 
 //approving deposit requests
 app.post("/approvedeposit/:id", async (req, res)=>{
-    console.log(req.body)
+    console.log("apporve deposit req body", req.body)
     let deposit = await Deposits.findById(req.params.id)
     let user = await Users.findOne({username: deposit.user})
 
@@ -430,7 +430,7 @@ app.post("/clearpending/:id", async(req, res)=>{
 
 //adding ballance to user account
 app.post("/addballance/:id", async(req, res)=>{
-    console.log(req.body)
+    console.log("addbalance req body", req.body)
     let deposit = await Deposits.findById(req.params.id)
     let user = await Users.findOne({username: deposit.user})
     let newballance = parseInt(req.body.newbal)
@@ -439,7 +439,7 @@ app.post("/addballance/:id", async(req, res)=>{
 
     user = await user.save()
 
-    console.log(user)
+    console.log("add balance user", user)
     res.redirect("/dashboard")
 })
 
@@ -493,7 +493,7 @@ app.post("/editprofile/:id", isLoggedIn, async (req, res)=>{
 })
 //support talk to us post route
 app.post('/talk', (req, res)=>{
-    console.log(req.body)
+    console.log("talk req body", req.body)
     res.redirect("/support")
 })
 
