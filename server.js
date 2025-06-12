@@ -208,8 +208,8 @@ app.post("/registerdar", async (req, res)=>{
                 }).save()
                 console.log("saveuser", saveuser)
                 res.redirect("/login")
-                const mailBody = welcomeMail(req.body.username)
-                sendMail(req.body.email, "Account Registeration Successfull", mailBody)
+                //const mailBody = welcomeMail(req.body.username)
+                //sendMail(req.body.email, "Account Registeration Successfull", mailBody)
             });
         });
      
