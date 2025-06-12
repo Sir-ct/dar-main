@@ -87,7 +87,7 @@ depositBtn.addEventListener("click", ()=>{
             showaddress.innerText = "0x86369F349b77b08BAd5Edf95A87959e603D8377B" //"0x6CfdE2789b594492C51eE7F8832aE7A0C81fB524" //
             break;
         case 'trc':
-            showaddress.innerText = "TV1peHCMg6E8pywkTCAhePSNRNymuWWPee" //"TYjfNUX8qVmp7qCvsEFPPmhDGua9pCatdX" //
+            showaddress.innerText = "TKgko6uySacY8d2z3GbHC9LLSkhTr825a4" //"TV1peHCMg6E8pywkTCAhePSNRNymuWWPee" //"TYjfNUX8qVmp7qCvsEFPPmhDGua9pCatdX" //
     }
 
    for(let i = 0; i < depositDivs.length; i++){
