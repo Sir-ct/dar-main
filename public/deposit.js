@@ -81,10 +81,10 @@ depositBtn.addEventListener("click", ()=>{
 
     switch(currency.value){
         case 'bitcoin':
-            showaddress.innerText = "bc1qrknpq0y46s34w680d2u7mrg3l06j7xev9q302g" //"bc1qra0srskmzl068c7nvvj62duxz0edrwfjm0lff2"
+            showaddress.innerText = "bc1qwcv0eknwmzuevfaw8x4a527yk6726aq00qkgpj" //"bc1qrknpq0y46s34w680d2u7mrg3l06j7xev9q302g" //"bc1qra0srskmzl068c7nvvj62duxz0edrwfjm0lff2"
             break;
         case 'ethereum':
-            showaddress.innerText = "0x86369F349b77b08BAd5Edf95A87959e603D8377B" //"0x6CfdE2789b594492C51eE7F8832aE7A0C81fB524" //
+            showaddress.innerText = "0x8F025EBb705c537C32D7e99be44605Fafa2baaB3" //"0x86369F349b77b08BAd5Edf95A87959e603D8377B" //"0x6CfdE2789b594492C51eE7F8832aE7A0C81fB524" //
             break;
         case 'trc':
             showaddress.innerText = "TKgko6uySacY8d2z3GbHC9LLSkhTr825a4" //"TV1peHCMg6E8pywkTCAhePSNRNymuWWPee" //"TYjfNUX8qVmp7qCvsEFPPmhDGua9pCatdX" //
