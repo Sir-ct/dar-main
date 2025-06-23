@@ -392,11 +392,11 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
     let mailBody = depositMail(user.username, deposit.amount)
-    try{ 
-        sendMail(user.email, "Deposit Approved", mailBody)
-    }catch(e){
-        throw new Error(e.message)
-    }
+    // try{ 
+    //     sendMail(user.email, "Deposit Approved", mailBody)
+    // }catch(e){
+    //     throw new Error(e.message)
+    // }
 })
 
 //canceling withdrawal request
