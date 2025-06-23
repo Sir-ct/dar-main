@@ -313,7 +313,7 @@ app.post("/passwordforgot", async (req, res)=>{
             bcrypt.hash("1234", salt, async function(err, hash) {
                 await Users.findOneAndUpdate({email: req.body.email},{password: hash})
                 let resetPassMail = resetPasswordMail(user.username)
-                sendMail(req.body.email, "Reset Password Successful", resetPassMail)
+                //sendMail(req.body.email, "Reset Password Successful", resetPassMail)
                 console.log("password changed")
             })
         })
@@ -355,7 +355,7 @@ app.post("/approvewithdraw/:id", async (req, res)=>{
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
     let mailBody = withdrawMail(user.username, withdraw.amount)
-    sendMail(user.email, "Withdrawal Approved", mailBody)
+    //sendMail(user.email, "Withdrawal Approved", mailBody)
     
 })
 
@@ -413,7 +413,7 @@ app.post("/cancelwithdrawal/:id", async(req, res)=>{
 
     res.redirect("/dashboard?page=dar_admin_control_panel")
     let mailBody = cancelWithdrawMail(user.username, withdrawal.amount)
-    sendMail(user.email, "Withdrawal Canceled", mailBody)
+    //sendMail(user.email, "Withdrawal Canceled", mailBody)
 })
 
 //clearing pending ballance
