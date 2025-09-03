@@ -73,6 +73,10 @@ app.get("/login", isLoggedOut, (req, res)=>{
     res.render("login", {msg: ""})
 })
 
+app.get("/getactive", (req, res)=>{
+    res.status(200).json({message: "Currently active", data: null})
+})
+
 //register get route
 app.get("/signup", isLoggedOut, async (req, res)=>{
     let upline = await Users.findOne({username: req.query.ref})
