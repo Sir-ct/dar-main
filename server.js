@@ -74,6 +74,7 @@ app.get("/login", isLoggedOut, (req, res)=>{
 })
 
 app.get("/getactive", (req, res)=>{
+    console.log("active pinging")
     res.status(200).json({message: "Currently active", data: null})
 })
 
