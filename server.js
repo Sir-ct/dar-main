@@ -195,7 +195,7 @@ app.post("/registerdar", async (req, res)=>{
                         userid: referrer._id,
                         type: "commission",
                         amount: 10,
-                        currency: ""
+                        currency: "Trc20"
                     })
 
                     upline = await upline.save()
