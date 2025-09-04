@@ -8,6 +8,8 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Last logged in</th>
+                <th>Balance</th>
+                <th>edit entire balance</th>
             </tr>
             <%for(let i=0; i < allUsers.length; i++) {%>
                 <tr>
@@ -15,6 +17,15 @@
                     <td><%= allUsers[i].username %></td>
                     <td><%= allUsers[i].email %></td>
                     <td><%= new Date(allUsers[i].lastLoggedIn).toLocaleString() %></td>
+                    <td><%= allUsers[i].account.currentballance %></td>
+                    <td>
+                        <form action="/edituserballance/<%=allUsers[i].username %>" method="post">
+                            <input type="number" name="newbal" />
+                            <button type="submit" class="approve-deposit">
+                                Edit ballance
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             <%}%>
         </table>

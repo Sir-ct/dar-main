@@ -374,7 +374,7 @@ app.post("/approvedeposit/:id", async (req, res)=>{
 
     user.account = {
         ...user.account, 
-        activedeposits: user.account.deposits + deposit.amount, 
+        activedeposits: user.account.activedeposits + deposit.amount, 
         deposits: user.account.deposits + deposit.amount,
         currentballance: user.account.currentballance + deposit.amount
     }
@@ -440,12 +440,30 @@ app.post("/addballance/:id", async(req, res)=>{
     let user = await Users.findOne({username: deposit.user})
     let newballance = parseInt(req.body.newbal)
 
-    user.account = {...user.account, currentballance: user.account.currentballance + newballance}
+    user.account = {
+        ...user.account, 
+        currentballance: user.account.currentballance + newballance
+    }
 
     user = await user.save()
 
     console.log("add balance user", user)
     res.redirect("/dashboard")
+})
+
+//entirely edit balance
+app.post("/edituserballance/:username", async(req, res)=>{
+    console.log("body", req.body, req.params.username)
+    let balance = parseInt(req.body.newbal)
+    let user = await Users.findOne({username: req.params.username})
+
+    user.account = {
+        ...user.account, 
+        currentballance: balance
+    }
+
+    user = await user.save()
+    res.redirect("/dashboard?page=dar_admin_control_panel")
 })
 
 //searchhistory post route
