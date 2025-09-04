@@ -4,6 +4,7 @@
     <div class="deposit-req-wrap">
     <table id="aut" style="width: 100%; text-align: center;" class="hidden">
             <tr>
+                <th>S/N</th>
                 <th>Fullname</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -13,6 +14,7 @@
             </tr>
             <%for(let i=0; i < allUsers.length; i++) {%>
                 <tr>
+                    <td><%= i+1 %></td>
                     <td><%= allUsers[i].fullname %></td>
                     <td><%= allUsers[i].username %></td>
                     <td><%= allUsers[i].email %></td>

@@ -144,7 +144,7 @@ const baseTemplate = (dynamicMessage)=>{
             ${dynamicMessage}
         </div>
         <div style="padding: 15px; background-color: #EEE;">
-            <p>&copy; 2024 - dormantrefunds</p>
+            <p>&copy; 2025 - dormantrefunds</p>
             <p>All rights reserved</p>
             <p> Z2 </p> <p>King Street, Nottingham, NG1 2AS</p>
         </div>
